@@ -42,3 +42,9 @@ Tips for file naming files and folders:
 * use lowercase with no spaces
 * use dashes (not underscore) for word separation
 
+Joseph Dobrzanski - I worked on a page to add customer reviews: storeInformation.html
+Madhav Ramdev - I worked on a the main page of the website: mainpage.html
+
+
+
+

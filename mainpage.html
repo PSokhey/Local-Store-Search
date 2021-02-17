@@ -15,7 +15,16 @@
 
     <!-- Optional styles and scripts of your own -->
 
+<style>
 
+    .row row-cols-1 row-cols-md-2 g-4 {
+        padding-top: 150px;
+    }
+    .card-img-top {
+        width: 300px;
+        height: 200px;
+    }
+</style>
 </head>
 
 <body>
@@ -64,13 +73,14 @@
     </div>
 
 
+
     <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col">
           <div class="card">
-            <img src="..." class="card-img-top" alt="...">
+            <img src="./images/01Grocery5.jpg" class="card-img-top" alt="store image">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 class="card-title">Farmhouse Store</h5>
+              <p class="card-text">Get your everyday groceries here.</p>
             </div>
           </div>
         </div>
@@ -102,6 +112,17 @@
           </div>
         </div>
       </div>
+
+    <!--footer-->
+    <nav class="navbar fixed-bottom navbar-light bg-light">
+        <div class="container-fluid">
+            <input class="btn btn-primary" type="button" value="Home">
+            <input class="btn btn-primary" type="submit" value="Submit">
+            <input class="btn btn-primary" type="reset" value="Favorites">
+          <a class="navbar-brand" href="#">Fixed bottom</a>
+        </div>
+      </nav> 
+
 
     <!----------------------------------------------->
     <!-- JS: Boostrap, Firebase, API related    -->
