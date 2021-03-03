@@ -44,7 +44,8 @@ Tips for file naming files and folders:
 
 
 Joseph Dobrzanski - I worked on a page to add customer reviews: storeInformation.html
-Madhav Ramdev - I worked on a the main page of the website: mainpage.html
+Madhav Ramdev - I worked on a the main page of the website
+: mainpage.html
 Prabhjeet Sokhey - I worked on a page to show search results:
 SearchResult.html
 
