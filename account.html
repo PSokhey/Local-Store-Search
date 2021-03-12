@@ -59,14 +59,20 @@
     </div>
 
     <!--responsive grid-->
-    <div class="container" style="padding: 3em; margin: 0 auto; width:75%" >
+    <div class="container" style="padding: 3em; margin: 0 auto; width:75%; background-color: #dedede;" >
       <div class="row">
         <div class="col-md-3">
 
           <img src="https://dummyimage.com/200x200/000/fff" class="img-thumbnail" alt="Profile Picture">
 
+
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Change image</label>
+            <input class="form-control" type="file" id="formFile">
+          </div>
+
         </div>
-        <div class="col-lg-4" style="margin:1em;">
+        <div class="col-lg-4" style="margin-Bottom:1em;">
 
                     <!--profile with desabled forms-->
                     <form>
@@ -88,7 +94,9 @@
                       </fieldset>
                     </form>
           
-                    <button class="btn btn-primary" type="button" style="float:right";>Edit</button>
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-primary" type="button">Edit</button>
+                    </div>
 
         </div>
         <div class="col-lg-4">
