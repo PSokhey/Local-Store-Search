@@ -185,6 +185,21 @@
 displayUsers();
     </script>
 
+
+<!--function for writing to the database-->
+    <script>
+      function writeUser() {
+    var citiesRef = db.collection("Users");
+
+    citiesRef.add({
+        email: "something@gmail.com",                  
+        userName: "WashingtonBoy",    
+    });
+}
+    </script>
+
+
+
     
 
 
