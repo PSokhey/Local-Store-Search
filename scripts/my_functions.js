@@ -1,15 +1,42 @@
-
 // helper function for posting 1 review. Receives review collection, posts specified information and updates number of comments
 function displayOneReview(doc) {
-    var username = doc.data().username;
-    var rating = doc.data().rating;
-    var comment = doc.data().comment;
+    var usernameR = doc.data().username;
+    var ratingR = doc.data().rating * 2;
+    var commentR = doc.data().comment;
+    var dateR = doc.data().date;
+    var imageR = "https://dummyimage.com/800x400/000/fff&text=Store+Image"; // *** need to change to stored picture
 
-    var newReview = "<p> " + username + " " + rating + " " + comment + "</p>";
-    $("#comments-go-here").append(newReview);
-    
+    var ratingString = "";
+    var halfStar = 0;
+    for (var i = 0; i < 5; i++) {
+        if (i < Math.floor(ratingR / 2)) {
+            ratingString = ratingString + "&#xf005;";
+        } else if ((ratingR % 2 == 1) && !halfStar) {
+            halfStar = 1;
+            ratingString = ratingString + "&#xf123;";
+        } else {
+            ratingString = ratingString + "&#xf006;";
+        }
+    }
+    var codeString = '<div class="card mb-3">' +
+        '<div class="row g-0">' +
+        '<div class="col-md-3" style="padding: 10px 10px 0 10px; text-align: center; max-width: 115px;">' +
+        '<img src="' + imageR + '" alt="userIcon" style="width: 100px; height: 100px; display: block;">' +
+        '<p style="display: inline-block" class="star1user fa">' + ratingString + '</p>' +
+        '</div>' +
+        '<div class="col-md-9">' +
+        '<div class="card-body">' +
+        '<h5 class="card-title username">' + usernameR + '</h5>' +
+        '<p class="card-text comment">' + commentR + '</p>' +
+        '<p class="card-text"><small class="text-muted datePosted">' + dateR + '</small></p>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    $("#comments-go-here").append(codeString);
+
     var numberComment = +document.getElementById("numComment").innerHTML;
-    $("#numComment").text(numberComment+1);
+    $("#numComment").text(numberComment + 1);
 }
 
 // function that runs at on page start to load all comments for this store 
