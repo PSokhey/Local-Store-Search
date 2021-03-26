@@ -78,13 +78,16 @@
                     <form>
                       <fieldset disabled>
                         <div class="mb-3">
-                          <label for="disabledTextInput" class="form-label">Username</label>
-                          <input type="text" id="disabledTextInput" class="form-control" placeholder="NAME">
+
+                          <!--original label was disabledTextInput for input but will need to change-->
+
+                          <label for="disabledTextInput" class="form-label">Username </label>
+                          <input type="text" id="userName" class="form-control myText" placeholder="NAME">
                         </div>
           
                         <div class="mb-3">
                           <label for="disabledTextInput" class="form-label">Email</label>
-                          <input type="text" id="disabledTextInput" class="form-control" placeholder="fake@gmail.com">
+                          <input type="text" id="email" class="form-control" placeholder="fake@gmail.com">
                         </div>
           
                         <div class="mb-3">
@@ -102,7 +105,7 @@
         <div class="col-lg-4">
 
           <!--links for favorite pages-->
-          <div class="list-group">
+          <div class="list-group" id="favorites">
             <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
               Favorites
             </a>
@@ -116,13 +119,7 @@
 
         
       </div>
-    </div>
-
-
-    <!--test for database will show-->
-    <div id= "testAThing">
-      <p>hello</p>
-    </div>
+    </div> 
 
 
     
@@ -168,15 +165,41 @@
 <!--function for retrieving from the database-->
     <script>
       function displayUsers(){
-    db.collection("Users").get()
+    db.collection("Users").where("password", "==", "456123").get()
     .then(function(snap){
         snap.forEach(function(doc){
-            var n = doc.data().email;             //gets the name field
-            console.log(n);
-            var user = doc.data().userName;        //gets the unique ID field
+            var emailInfo = doc.data().email;     
+            console.log(emailInfo);
+            var user = doc.data().userName; 
             console.log(user);
             var pass = doc.data().password;
             console.log(pass);
+ 
+           
+           document.getElementById("userName").placeholder = user;
+           document.getElementById("email").placeholder = emailInfo;
+    
+
+          
+
+            // how to access the array holding favorite stores. 
+
+            var test = doc.data().favStores;
+            console.log(test);
+
+
+
+            for (i = 0; i <= test.length; i++) {
+            
+              var storeLink = document.createElement("a")
+              storeLink.textContent = test[i];
+              storeLink.href = "storeInformation.html";
+              document.getElementById("favorites").appendChild(storeLink);
+              
+            }
+
+           
+
            // document.getElementById(cityid).innerText = n;
         })
 
@@ -186,17 +209,19 @@ displayUsers();
     </script>
 
 
-<!--function for writing to the database-->
+<!--function for writing to the database (easier to add dummy values if needed)-->
     <script>
       function writeUser() {
-    var citiesRef = db.collection("Users");
+    var usersRef = db.collection("Users");
 
-    citiesRef.add({
+    usersRef.add({
         email: "something@gmail.com",                  
         userName: "WashingtonBoy",    
     });
 }
     </script>
+
+           
 
 
 
