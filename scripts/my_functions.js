@@ -1,117 +1,68 @@
-/*
-function sayHello() {
-    firebase.auth().onAuthStateChanged(function(somebody_tag_thing) {
-        if (somebody_tag_thing) {
-            console.log(somebody_tag_thing.uid); // display uid info of user on console
 
-            db.collection("users")
-            .doc(somebody_tag_thing.uid)
-            .get()                          // read
-            .then(function(doc) {           // wait for get() to finish
-                console.log(doc.data().name);
-                var n = doc.data().name;    // grab "name" document information of the user. If multiple items, need a for each loop
-                $("#name-goes-here").text(n);// using JQ, stick information of "n" variable into the <span> of id "name-goes-here"
+// helper function for posting 1 review. Receives review collection, posts specified information and updates number of comments
+function displayOneReview(doc) {
+    var username = doc.data().username;
+    var rating = doc.data().rating;
+    var comment = doc.data().comment;
 
-
-                // get other things and do other things for this user
-            })                           
-        }
-    })
-
+    var newReview = "<p> " + username + " " + rating + " " + comment + "</p>";
+    $("#comments-go-here").append(newReview);
+    
+    var numberComment = +document.getElementById("numComment").innerHTML;
+    $("#numComment").text(numberComment+1);
 }
-//sayHello(); // run when the page loads
-*/
-function citiesQuery() {
-    db.collection("cities")
-        .where("population", ">", 1000000) // filter
-        //.where("hemisphere", "==", "south")
-        //.limit(1)                                   // restrict how many results appear (top "n")
-        //.orderBy("population")
-        .orderBy("population", "desc") // put in descending order
-        .get()
-        .then(function (snap) {
-            snap.forEach(function (doc) { // looping through a collection (when you don't specify a doc, you get a collection instead)
-                var n = doc.data().name;
-                var pop = doc.data().population;
-                console.log(n);
-                var newdom = "<p> " + n + " " + pop + "</p>";
-                $("#cities-go-here").append(newdom);
-                //document.getElementById("cities-go-here").innerHTML = newdom;
-            })
-        })
-}
-//citiesQuery();
 
+// function that runs at on page start to load all comments for this store 
 function displayReviews() {
-    var numComment = 0;
+    // reset reviews that were posted and # reviews counter
+    $("#numComment").text(0);
+    $("#comments-go-here").text("");
 
-    db.collection("test_data_joseph")
+    db.collection("test_data_joseph") // *** using test folder for now
         .get()
         .then(function (snap) {
             snap.forEach(function (doc) {
-                var username = doc.data().username;
-                var rating = doc.data().rating;
-                var comment = doc.data().comment;
-
-                var newReview = "<p> " + username + " " + rating + " " + comment + "</p>";
-                $("#comments-go-here").append(newReview);
-
-                var test = "";
-
-                numComment++;
-
-                /*
-                console.log(username);
-                console.log(rating);
-                console.log(comment);
-                */
+                displayOneReview(doc)
             })
-            $("#numComment").text(numComment);
         })
 }
 displayReviews();
 
+// function for handling when a new review is posted
 function createComment() {
-    var commentRef = db.collection("test_data_joseph");
-
+    var commentRef = db.collection("test_data_joseph"); // *** using test folder for now
 
     // when a new reivew is posted, capture information about the review
     document.getElementById("postReview").addEventListener('click', function () {
         var d = new Date();
-        var postedDate = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
-        var rating = document.getElementById("reviewRating").value / 2;
-        var comment = document.getElementById("comment").value;
-        var username = "";
-
+        var reviewDate = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+        var reviewRating = document.getElementById("reviewRating").value / 2;
+        var reviewComment = document.getElementById("comment").value;
+        var reviewUsername = "";
+        // get user information
         firebase.auth().onAuthStateChanged(function (loggedIn) {
             if (loggedIn) {
-                console.log(loggedIn.uid); // display uid info of user on console
-
                 db.collection("users")
                     .doc(loggedIn.uid)
                     .get() // read
                     .then(function (doc) { // wait for get() to finish
                         console.log(doc.data().name);
-                        username = doc.data().name; // grab "name" document information of the user
-                        //$("#name-goes-here").text(n); // using JQ, stick information of "n" variable into the <span> of id "name-goes-here"
+                        reviewUsername = doc.data().name; // grab "name" document information of the user
+
+                        // post review to database
+                        commentRef.add({
+                            username: reviewUsername,
+                            rating: reviewRating,
+                            comment: reviewComment,
+                            date: reviewDate,
+                            //picture: "yvr.jpg"
+                        });
+                        // update reviews
+                        displayReviews()
                     })
             }
         })
     })
-
-
-
-
-
-    /*
-        commentRef.add({
-            username: "new user ID",
-            rating: 5.0,
-            comment: "Best experience I ever had",
-            date: "2021-03-24",
-            //picture: "yvr.jpg"
-        });
-        */
 }
 createComment();
 
@@ -132,6 +83,5 @@ function updateRating(inputRating) {
             rating = rating + "&#xf006;";
         }
     }
-
     document.getElementById("reviewRatingValue").innerHTML = rating;
 }
