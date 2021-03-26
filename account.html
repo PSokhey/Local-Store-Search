@@ -109,9 +109,6 @@
             <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
               Favorites
             </a>
-            <a href="#" class="list-group-item list-group-item-action">Store 1</a>
-            <a href="#" class="list-group-item list-group-item-action">Store 2</a>
-            <a href="#" class="list-group-item list-group-item-action">Store 3</a>
             <a href="#" class="list-group-item list-group-item-action">More...</a>
           </div>
 
@@ -193,6 +190,7 @@
             
               var storeLink = document.createElement("a")
               storeLink.textContent = test[i];
+              storeLink.className = "list-group-item list-group-item-action";
               storeLink.href = "storeInformation.html";
               document.getElementById("favorites").appendChild(storeLink);
               
