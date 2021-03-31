@@ -55,7 +55,7 @@
       </div>
     </nav>
     <div class="container">
-      <h1 class="display-4">Hello, NAME</h1>
+      <h1 class="display-4">Hello, <span id = "welcome"></span></h1>
     </div>
 
     <!--responsive grid-->
@@ -109,7 +109,6 @@
             <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
               Favorites
             </a>
-            <a href="#" class="list-group-item list-group-item-action">More...</a>
           </div>
 
         </div>
@@ -162,17 +161,17 @@
 <!--function for retrieving from the database-->
     <script>
       function displayUsers(){
-    db.collection("Users").where("password", "==", "456123").get()
+    db.collection("users").where("password", "==", "123").get()
     .then(function(snap){
         snap.forEach(function(doc){
             var emailInfo = doc.data().email;     
             console.log(emailInfo);
-            var user = doc.data().userName; 
+            var user = doc.data().name; 
             console.log(user);
             var pass = doc.data().password;
             console.log(pass);
  
-           
+           document.getElementById("welcome").innerText = user;
            document.getElementById("userName").placeholder = user;
            document.getElementById("email").placeholder = emailInfo;
     
@@ -186,15 +185,27 @@
 
 
 
-            for (i = 0; i <= test.length; i++) {
+            for (i = 0; i < test.length; i++) {
             
-              var storeLink = document.createElement("a")
+              var storeLink = document.createElement("a");
               storeLink.textContent = test[i];
               storeLink.className = "list-group-item list-group-item-action";
               storeLink.href = "storeInformation.html";
               document.getElementById("favorites").appendChild(storeLink);
+
+              if(i==4) {
+                break;
+              }
               
             }
+
+            // adding a more page for full
+            var storeLink = document.createElement("a");
+            storeLink.textContent = "more..";
+            storeLink.className = "list-group-item list-group-item-action";
+              storeLink.href = "favorites.html";
+              document.getElementById("favorites").appendChild(storeLink);
+
 
            
 
