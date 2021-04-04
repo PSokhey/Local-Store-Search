@@ -139,7 +139,7 @@ function ShowStoresCollection() {
                 var codestring = `
            
             
-              <tr>
+              <tr class ="row-link">
                 <td>` + nm + `</td>
                 <td>` + dist + `</td>
                 <td>` + rate + `</td>
@@ -148,6 +148,9 @@ function ShowStoresCollection() {
                 $("#stores-goes-here").append(codestring);
                 // append with jquery to DOM
 
+                $(".row-link").click(function() {
+                    window.location = "storeInformation.html";
+                });
 
             })
 
@@ -155,3 +158,4 @@ function ShowStoresCollection() {
         })
 }
 // showStoresCollection();
+
