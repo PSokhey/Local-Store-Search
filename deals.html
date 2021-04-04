@@ -12,10 +12,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-<style>
+    <style>
 
-</style>
+    </style>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-warning">
         <div class="container-fluid">
@@ -62,38 +63,39 @@
     </nav>
 
 
-    
+
     <div class="container">
-        <h1 class="display-4"; style = "text-align: center;">Hottest deals of the week!</h1>
+        <h1 class="display-4" ; style="text-align: center;">Hottest deals of the week!</h1>
         <table class="table table-striped table-hover">
             <thead>
-              <tr>
-                <th scope="col">Nearest</th>
-                <th scope="col">Store Name</th>
-                <th scope="col">Deals<br/> Score</th>
-              </tr>
+                <tr>
+                    <th scope="col">Nearest</th>
+                    <th scope="col">Store Name</th>
+                    <th scope="col">Deals</th>
+                </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Bob's Things</td>
-                <td>20% off on daily items</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Thing's and Stuff</td>
-                <td>Flat 40% off</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry's shop'</td>
-                <td>Buy 1 Get 1 free!</td>
-              </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Bob's Things</td>
+                    <td>20% off on daily items</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Thing's and Stuff</td>
+                    <td>Flat 40% off</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry's shop'</td>
+                    <td>Buy 1 Get 1 free!</td>
+                </tr>
             </tbody>
-          </table>
-          
+        </table>
+
     </div>
 
+    <div id="deals-goes-here"> </div>
 
     <!--footer-->
     <nav class="navbar fixed-bottom navbar-light bg-light">
@@ -104,8 +106,25 @@
         </div>
     </nav>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
-</script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+    </script>
+    <script src="/scripts/firebase-api-storesearch.js"></script>
+
+
+    <!--------------------------------------------------------------------->
+    <!-- JS files: Your own JavaScript functions included here    -->
+    <!--------------------------------------------------------------------->
+
+    <script src="/scripts/functions.js"></script>
+    </script>
 </body>
+
 </html>
