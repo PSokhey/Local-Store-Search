@@ -61,17 +61,15 @@
 
   <div class="container">
     <div style="text-align:center;">
-      <h1 class="display-4">Store Name Ltd.</h1>
-      <h1 class="display-3" style="display: inline-block" id="star1">★</h1>
-      <h1 class="display-3" style="display: inline-block" id="star2">★</h1>
-      <h1 class="display-3" style="display: inline-block" id="star3">★</h1>
-      <h1 class="display-3" style="display: inline-block" id="star4">★</h1>
-      <h1 class="display-3" style="display: inline-block" id="star5">☆</h1>
+      <h1 class="display-4" id="storeName">Store Name Ltd.</h1>
+      <p style="display: inline-block" class="storeRating fa"></p>
       <div>
-        <img id="companyImage" src="https://dummyimage.com/800x400/000/fff&text=Featured+Image" class="img-fluid"
-          alt="Store image">
+        <div id="storeRating"></div>
+        <div id="storeImage"><img src="https://dummyimage.com/800x400/000/fff&text=Featured+Image" class="img-fluid"
+            alt="Store image"></div>
+
         <div class="card-body">
-          <p id="companyImageCaption" class="card-text">Caption about the image.</p>
+          <p id="companyImageCaption" class="card-text"></p>
         </div>
       </div>
       </br>
@@ -84,17 +82,18 @@
       </p>
       <div class="collapse" id="companyDesc">
         <div id="companyDescContainer" class="card card-body" style="text-align: left">
-          <p id="companyDescP">
-            This is where the company description goes. It describes whatever the company wants to put here, including
-            the company history, what it sells, benefits of its location/business, etc. Generally, the description will
-            not
-            be too long as to not be a pain to the user viewing the company information.
+            <div id="storeBio"></div>
             </br>
-            </br>
-            <p><b>Address: </b><span id="companyDescAddress">1101 West 57th Street || V1V 1V1</span></p>
+            <p>
+              <b>Address: </b>
+              </br>
+              <span id="storeAddress">1101 West 57th Street</span>
+              <span> || </span>
+              <span id="storePostalCode">V1V 1V1</span>
+            </p>
 
             <p><b>Hours: </b>
-              <ul id="companyDescHours">
+              <ul id="storeHours">
                 <li>Monday: 8:30AM - 4:30AM</li>
                 <li>Tuesday: 8:30AM - 4:30AM</li>
                 <li>Wednesday: 8:30AM - 4:30AM</li>
@@ -104,7 +103,6 @@
                 <li>Sunday: CLOSED</li>
               </ul>
             </p>
-          </p>
         </div>
         <br />
       </div>
@@ -117,13 +115,12 @@
       </p>
       <div class="collapse" id="externalLink">
         <div class="card card-body" style="text-align: left">
-          <p><b>Contact Information: </b>
-            <ul id="companyDescContactInformation">
-              <li>Phone: (604)-604-6004</li>
-              <li>Email: email@gmail.com</li>
-              <li>Website: <a id="companyLink" href="https://www.google.com">www.google.com</a></li>
-            </ul>
-          </p>
+          <b>Contact Information: </b>
+          <ul id="storeContactInformation">
+            <li id="storeLink">Website: www.google.com</li>
+            <li id="storePhone">Phone: (604)-604-6004</li>
+            <li id="storeEmail">Email: email@gmail.com</li>
+          </ul>
         </div>
         <br />
       </div>
@@ -247,24 +244,64 @@
     <!--------------------------------------------------------------------->
     <script src="scripts/my_functions.js"></script>
     <script>
+
+      
+      // load store information using store UID from url
       function getDetails() {
         // https://some.site/?id=123
         const parsedUrl = new URL(window.location.href);
-        console.log(parsedUrl.searchParams.get("id")); // "123"
+        //console.log(parsedUrl.searchParams.get("id")); // "123"
 
         // extract id from url, assign to variable
         var id = parsedUrl.searchParams.get("id");
-        console.log(id);
+        //console.log(id);
 
         // use this ID to read from firestore
-        db.collection("webcams")
-          .doc(id) // webcam ID that we extracted
+        db.collection("storesDatabase")
+          .doc(id) // store ID that we extracted
           .get() // REAC async
           .then(function (doc) { // display details!
-            var name = doc.data().fields.name;
-            var geo_area = doc.data().fields.geo_local_area;
-            var coord = doc.data().fields.geom.coordinates; // know your json data
-            var url = doc.data().fields.url;
+            console.log(doc);
+            var name = doc.data().storeInformation.name;
+            var address = doc.data().storeInformation.address;
+            var postalCode = doc.data().storeInformation.postalCode;
+            var hours = doc.data().storeInformation.hours;
+            var bio = doc.data().storeInformation.storeBio;
+
+            var bannerImage = doc.data().imageGallery.image1;
+
+            var website = doc.data().externalLinks.link1;
+            var phone = doc.data().externalLinks.phoneNumber;
+            var email = doc.data().externalLinks.email;
+
+            var hoursList = "<table><tr><td>";
+            var days=["Mon:&emsp;", "Tues:", "Wed:", "Thur:", "Fri:", "Sat:", "Sun:"];
+            for (var i = 0; i < hours.length; i++) {
+              hoursList += "<li>" + days[i] + "</li>";
+            }
+            hoursList += "</td><td>";
+            for (var i = 0; i < hours.length; i++) {
+              hoursList += hours[i] + "<br>";
+            }
+
+            hoursList += "</td></tr></table>";
+
+            $("#storeName").html(name);
+            $("#storeAddress").html(address);
+            $("#storePostalCode").html(postalCode);
+            $("#storeBio").html(bio);
+
+            $("#storeHours").html(hoursList);
+
+            $("#storeImage").html("<img src='" + bannerImage + "'>");
+
+            $("#storeEmail").html("Email: " + email);
+            $("#storePhone").html("Phone: " + phone);
+            $("#storeLink").html("Website: " + website);
+
+
+
+            /*
             $("#details-go-here").append("<h1> " + name + "</h1>");
             $("#details-go-here").append("<h1> " + geo_area + "</h1>");
             $("#details-go-here").append("<h1> " + coord + "</h1>");
@@ -273,10 +310,12 @@
             $("#details-go-here").append("<h1 id='" + likeid + "'> CLICK HERE TO LIKE</h1>")
             addLikeListener(id, likeid);
             showLikes(id);
+            */
           })
+
+
       }
       //getDetails();
-      
     </script>
 
 </body>
