@@ -14,7 +14,6 @@
   <!-- Optional styles and scripts of your own -->
   <!-- for handling stars for rating -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 
 <body>
@@ -245,7 +244,7 @@
     <script src="scripts/my_functions.js"></script>
     <script>
 
-      
+
       // load store information using store UID from url
       function getDetails() {
         // https://some.site/?id=123
@@ -293,8 +292,9 @@
 
             $("#storeHours").html(hoursList);
 
-            $("#storeImage").html("<img src='" + bannerImage + "'>");
-
+            $("#storeImage").html("<img id='storeBannerImage' src='" + bannerImage + "'>");
+            $("#storeBannerImage").css("width", "50%");
+            
             $("#storeEmail").html("Email: " + email);
             $("#storePhone").html("Phone: " + phone);
             $("#storeLink").html("Website: " + website);

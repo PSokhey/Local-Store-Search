@@ -53,6 +53,28 @@ function displayReviews() {
     $("#numComment").text(0);
     $("#comments-go-here").text("");
 
+    // grab url
+    const parsedUrl = new URL(window.location.href);
+    // extract id from url, assign to variable
+    var id = parsedUrl.searchParams.get("id");
+
+    //var commentRef = db.collection("storesDatabase").doc(id).collection("customerReviews");
+    db.collection("storesDatabase")
+        .doc(id)
+        .collection("customerReviews") // store ID that we extracted
+        .get() // REAC async
+        .then(function (snap) { // display details!
+            snap.forEach(function (doc) {
+                displayOneReview(doc)
+            })
+            // update the store's overall rating
+            //updateStoreRating();
+
+
+        })
+
+
+        /*
     // post reviews, one at a time
     db.collection("test_data_joseph") // *** using test folder for now
         .orderBy("timestamp", "desc").limit(5)
@@ -64,6 +86,7 @@ function displayReviews() {
             // update the store's overall rating
             //updateStoreRating();
         })
+        */
 }
 displayReviews();
 
@@ -71,7 +94,14 @@ displayReviews();
 
 // function for handling when a new review is posted
 function createComment() {
-    var commentRef = db.collection("test_data_joseph"); // *** using test folder for now
+
+    // grab url
+    const parsedUrl = new URL(window.location.href);
+    // extract id from url, assign to variable
+    var id = parsedUrl.searchParams.get("id");
+
+    //var commentRef = db.collection("test_data_joseph"); // *** using test folder for now
+    var commentRef = db.collection("storesDatabase").doc(id).collection("customerReviews");
 
     // when a new reivew is posted, capture information about the review
     document.getElementById("postReview").addEventListener('click', function () {
@@ -175,8 +205,8 @@ function writeData() {
             },
             "imageGallery": {
                 "image1": "./images/01Grocery5.jpg"
-            },
-            "customerReviews": {}
+            } //,
+            //"customerReviews": {}
         },
         {
             "storeInformation": {
@@ -202,8 +232,8 @@ function writeData() {
             },
             "imageGallery": {
                 "image1": "./images/furniture.jpg"
-            },
-            "customerReviews": {}
+            } //,
+            //"customerReviews": {}
         }
     ];
 
