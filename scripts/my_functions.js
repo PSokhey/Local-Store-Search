@@ -58,7 +58,6 @@ function displayReviews() {
     // extract id from url, assign to variable
     var id = parsedUrl.searchParams.get("id");
 
-    //var commentRef = db.collection("storesDatabase").doc(id).collection("customerReviews");
     db.collection("storesDatabase")
         .doc(id)
         .collection("customerReviews") // store ID that we extracted
@@ -68,28 +67,10 @@ function displayReviews() {
                 displayOneReview(doc)
             })
             // update the store's overall rating
-            //updateStoreRating();
-
-
+            updateStoreRating();
         })
-
-
-        /*
-    // post reviews, one at a time
-    db.collection("test_data_joseph") // *** using test folder for now
-        .orderBy("timestamp", "desc").limit(5)
-        .get()
-        .then(function (snap) {
-            snap.forEach(function (doc) {
-                displayOneReview(doc)
-            })
-            // update the store's overall rating
-            //updateStoreRating();
-        })
-        */
 }
 displayReviews();
-
 
 
 // function for handling when a new review is posted
@@ -160,22 +141,57 @@ function updateRating(inputRating) {
 
 // function to post the store rating 
 function updateStoreRating() {
-    var halfStar = 0;
-    var rating = "";
-    for (var i = 0; i < 5; i++) {
-        if (i < Math.floor(inputRating / 2)) {
-            //console.log("star");
-            rating = rating + "&#xf005;";
-        } else if ((inputRating % 2 == 1) && !halfStar) {
-            //console.log("halfstar");
-            halfStar = 1;
-            rating = rating + "&#xf123;";
-        } else {
-            //console.log("empty");
-            rating = rating + "&#xf006;";
-        }
-    }
-    document.getElementById("storeRating").innerHTML = rating;
+    // grab url
+    const parsedUrl = new URL(window.location.href);
+    // extract id from url, assign to variable
+    var id = parsedUrl.searchParams.get("id");
+
+    var ratingR;
+    var sum = 0;
+    var divisor = 0;
+    db.collection("storesDatabase")
+        .doc(id)
+        .collection("customerReviews")
+        .get() // REAC async
+        .then(function (snap) { // display details!
+            // add together all ratings
+            snap.forEach(function (doc) {
+                sum += doc.data().rating * 2;
+                divisor++;
+            })
+
+            // if there is at least 1 customer review, calculate the average rating
+            if (divisor != 0) {
+                var average = sum / divisor;
+            }
+
+            // create string for star rating and put into appropriate tag on page
+            var halfStar = 0;
+            var rating = "";
+            for (var i = 0; i < 5; i++) {
+                if (i < Math.floor(average / 2)) {
+                    //console.log("star");
+                    rating = rating + "&#xf005;";
+                } else if ((average % 2 == 1) && !halfStar) {
+                    //console.log("halfstar");
+                    halfStar = 1;
+                    rating = rating + "&#xf123;";
+                } else {
+                    //console.log("empty");
+                    rating = rating + "&#xf006;";
+                }
+            }
+
+            // append number of reviews to star rating, making "review" plural/singular where appropriate
+            rating += " " + divisor + " Review" + ((divisor == 1) ? "" : "s");
+            document.getElementById("storeRating").innerHTML = rating;
+
+            // write/update cumulative rating to database
+            var ratingRef = db.collection("storesDatabase").doc(id);
+            ratingRef.set({
+                cumulativeRating: average / 2
+            }, { merge: true });
+        })
 }
 
 
