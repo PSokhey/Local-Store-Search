@@ -109,6 +109,7 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
 
     <script src="scripts/firebase-api-storesearch.js"></script>
+    <script src="scripts/FunctionsPrabh.js"></script>
     <!--------------------------------------------------------------------->
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
@@ -134,7 +135,9 @@
                     if (authResult.additionalUserInfo.isNewUser) {         //if new user
                         db.collection("users").doc(user.uid).set({         //write to firestore
                                 name: user.displayName,                    //"users" collection
-                                email: user.email                          //with authenticated user's ID (user.uid)
+                                email: user.email,                          //with authenticated user's ID (user.uid)
+                                favStores: []
+                                // need to save password but not working.
                             }).then(function () {
                                 console.log("New user added to firestore");
                                 window.location.assign("mainpage.html");       //re-direct to main.html after signup
