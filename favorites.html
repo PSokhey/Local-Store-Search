@@ -36,7 +36,7 @@
                 More
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a id="profileGo" class="dropdown-item" href="#">profile</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li>
                   <hr class="dropdown-divider">
@@ -57,7 +57,7 @@
       </div>
     </nav>
     <div class="container">
-      <h1 class="display-4"><span id = "welcome">'s Favorites</span></h1>
+      <h1v class="display-4"><span id = "welcome"></span>'s Favorites</h1>
     </div>
 
 
@@ -106,18 +106,32 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
 
     <script src="scripts/firebase-api-storesearch.js"></script>
+    <script src="scripts/FunctionsPrabh.js"></script>
 
 
     <script>
 
 function displayUsers(){
-    db.collection("users").where("password", "==", "123").get()
-    .then(function(snap){
-        snap.forEach(function(doc){
+
+        const parsedUrl = new URL(window.location.href);
+        var userID = parsedUrl.searchParams.get("id");
+        console.log("Retrieved ID on  fav page " + userID);
+
+
+        db.collection("users").doc(userID).get()
+    .then(function(doc){
 
     
 
-          
+      var emailInfo = doc.data().email;     
+            
+            // dispaying personal name on favorite page. 
+            var user = doc.data().name; 
+            console.log(user);
+            
+ 
+           document.getElementById("welcome").innerText = user;
+           
 
             // how to access the array holding favorite stores. 
 
@@ -141,7 +155,9 @@ function displayUsers(){
            
 
            // document.getElementById(cityid).innerText = n;
-        })
+        
+
+
 
     })
 }

@@ -76,29 +76,29 @@
 
                     <!--profile with desabled forms-->
                     <form>
-                      <fieldset disabled>
+                      <fieldset>
                         <div class="mb-3">
 
                           <!--original label was disabledTextInput for input but will need to change-->
 
-                          <label for="disabledTextInput" class="form-label">Username </label>
-                          <input type="text" id="userName" class="form-control myText" placeholder="NAME">
+                          <label for="TextInput" class="form-label">Username </label>
+                          <input type="text" id="userNameHolder" class="form-control myText" placeholder="NAME">
                         </div>
           
                         <div class="mb-3">
-                          <label for="disabledTextInput" class="form-label">Email</label>
-                          <input type="text" id="email" class="form-control" placeholder="fake@gmail.com">
+                          <label for="TextInput" class="form-label">Email</label>
+                          <input type="text" id="emailHolder" class="form-control" placeholder="fake@gmail.com">
                         </div>
           
                         <div class="mb-3">
-                          <label for="disabledTextInput" class="form-label">password</label>
+                          <label for="TextInput" class="form-label">password</label>
                           <input type="text" id="disabledTextInput" class="form-control" placeholder="********">
                         </div>              
                       </fieldset>
                     </form>
           
                     <div class="d-grid gap-2">
-                      <button class="btn btn-primary" type="button">Edit</button>
+                      <button id="saveButton" class="btn btn-primary" type="button">save</button>
                     </div>
 
         </div>
@@ -178,8 +178,8 @@
             console.log(pass);
  
            document.getElementById("welcome").innerText = user;
-           document.getElementById("userName").placeholder = user;
-           document.getElementById("email").placeholder = emailInfo;
+           document.getElementById("userNameHolder").placeholder = user;
+           document.getElementById("emailHolder").placeholder = emailInfo;
     
 
           
@@ -207,18 +207,38 @@
 
             // adding a more page for full
             var storeLink = document.createElement("a");
+            storeLink.id = "forMore";
             storeLink.textContent = "more..";
             storeLink.className = "list-group-item list-group-item-action";
-              storeLink.href = "favorites.html";
               document.getElementById("favorites").appendChild(storeLink);
 
 
-           
+              // modifying "more" click to pull up personal favorite page.
+              document.getElementById("forMore")
+                .addEventListener("click", function() {
+                    window.location.href="favorites.html?id=" + userID;
+                });
 
-           // document.getElementById(cityid).innerText = n;
+           // when you are udpating information
+           document.getElementById("saveButton")
+                .addEventListener("click", function() {
+                  
+                  console.log("is this working");
+                  db.collection("users").doc(userID)
+                  .update({
+                    name: document.getElementById("userNameHolder").value
+                  });
+
+
+                });
         
 
     })
+
+
+
+
+
 }
 displayUsers();
     </script>
