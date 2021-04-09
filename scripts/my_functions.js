@@ -56,10 +56,10 @@ function displayReviews() {
     // grab url
     const parsedUrl = new URL(window.location.href);
     // extract id from url, assign to variable
-    var id = parsedUrl.searchParams.get("id");
+    var storeID = parsedUrl.searchParams.get("storeID");
 
     db.collection("storesDatabase")
-        .doc(id)
+        .doc(storeID)
         .collection("customerReviews") // store ID that we extracted
         .get() // REAC async
         .then(function (snap) { // display details!
@@ -70,7 +70,6 @@ function displayReviews() {
             updateStoreRating();
         })
 }
-displayReviews();
 
 
 // function for handling when a new review is posted
@@ -79,10 +78,10 @@ function createComment() {
     // grab url
     const parsedUrl = new URL(window.location.href);
     // extract id from url, assign to variable
-    var id = parsedUrl.searchParams.get("id");
+    var storeID = parsedUrl.searchParams.get("storeID");
 
     //var commentRef = db.collection("test_data_joseph"); // *** using test folder for now
-    var commentRef = db.collection("storesDatabase").doc(id).collection("customerReviews");
+    var commentRef = db.collection("storesDatabase").doc(storeID).collection("customerReviews");
 
     // when a new reivew is posted, capture information about the review
     document.getElementById("postReview").addEventListener('click', function () {
@@ -144,13 +143,13 @@ function updateStoreRating() {
     // grab url
     const parsedUrl = new URL(window.location.href);
     // extract id from url, assign to variable
-    var id = parsedUrl.searchParams.get("id");
+    var storeID = parsedUrl.searchParams.get("storeID");
 
     var ratingR;
     var sum = 0;
     var divisor = 0;
     db.collection("storesDatabase")
-        .doc(id)
+        .doc(storeID)
         .collection("customerReviews")
         .get() // REAC async
         .then(function (snap) { // display details!
@@ -187,7 +186,7 @@ function updateStoreRating() {
             document.getElementById("storeRating").innerHTML = rating;
 
             // write/update cumulative rating to database
-            var ratingRef = db.collection("storesDatabase").doc(id);
+            var ratingRef = db.collection("storesDatabase").doc(storeID);
             ratingRef.set({
                 cumulativeRating: average / 2
             }, { merge: true });
@@ -198,56 +197,57 @@ function updateStoreRating() {
 function writeData() {
     //this is an array of JSON objects copied from open source data
     var stores = [{
-            "storeInformation": {
-                "name": "Digikey",
-                "rating": "4.5",
-                "storeBio": "This is an online store that sells over 100,000 different electronic componenets to customers around the world! One-deay shipping if orders are placed before 15:00 EST for locations in North America.",
-                "address": "889 East 57th Avenue",
-                "postalCode": "V1R 7G8",
+        "cumulativeRating": 0,
+			"storeInformation": {
+                "name": "Superstar Plumbing",
+                
+                "storeBio": "Your go to shop for local plumbing parts and services",
+				"address": "7513 Victoria Drive",
+                "postalCode": "75282",
                 "hours": [
-                    "8:00AM - 15:00PM",
-                    "8:00AM - 15:00PM",
-                    "8:00AM - 15:00PM",
-                    "8:00AM - 15:00PM",
-                    "8:00AM - 15:00PM",
-                    "9:00AM - 17:00PM",
-                    "9:00AM - 17:00PM"
+                    "8:00AM - 10:00PM",
+                    "8:00AM - 10:00PM",
+                    "8:00AM - 10:00PM",
+                    "8:00AM - 10:00PM",
+                    "8:00AM - 10:00PM",
+                    "8:00AM - 9:00PM",
+                    "8:00AM - 9:00PM"
                 ]
             },
             "externalLinks": {
-                "link1": "www.digikey.com",
-                "phoneNumber": "1-800-344-4539",
-                "email": "sales@digikey.com"
-            },
-            "imageGallery": {
-                "image1": "./images/01Grocery5.jpg"
-            } //,
-            //"customerReviews": {}
-        },
-        {
-            "storeInformation": {
-                "name": "Newark",
-                "rating": "4.8",
-                "storeBio": "Choose from a vast selection of industrial, commercial, and consumer grade electronic products. No shipping charges will be applied for orders over $150CAD! Worldwide shipping is available.",
-                "address": "1600 Pennsylvania Avenue NW",
-                "postalCode": "37188",
-                "hours": [
-                    "8:00AM - 20:00PM",
-                    "8:00AM - 20:00PM",
-                    "8:00AM - 17:30PM",
-                    "8:00AM - 20:00PM",
-                    "8:00AM - 20:00PM",
-                    "10:00AM - 21:00PM",
-                    "11:30AM - 21:00PM"
-                ]
-            },
-            "externalLinks": {
-                "link1": "www.canada.newark.com",
-                "phoneNumber": "1-800-639-2758",
-                "email": "order@newark.com"
+                "link1": "www.superstar.com",
+                "phoneNumber": "604-428-6478",
+                "email": "support@superstar.com"
             },
             "imageGallery": {
                 "image1": "./images/furniture.jpg"
+            } //,
+            //"customerReviews": {}
+        },
+        {	
+			"cumulativeRating": 0,
+            "storeInformation": {
+                "name": "Walter's Groceries",
+                "storeBio": "Bringing the best produce at a cheap price!",
+                "address": "7412 Canada Way",
+                "postalCode": "75262",
+                "hours": [
+                    "9:30AM - 9:00PM",
+                    "9:30AM - 9:00PM",
+                    "9:30AM - 9:00PM",
+                    "9:30AM - 9:00PM",
+                    "9:30AM - 9:00PM",
+                    "9:30AM - 9:00PM",
+                    "9:30AM - 9:00PM"
+                ]
+            },
+            "externalLinks": {
+                "link1": "No website",
+                "phoneNumber": "604-987-1285 (ext 6)",
+                "email": "cleaners@hotmail.com"
+            },
+            "imageGallery": {
+                "image1": "./images/Clothing.jpg"
             } //,
             //"customerReviews": {}
         }
@@ -258,3 +258,4 @@ function writeData() {
         db.collection("storesDatabase").add(oneStore)
     })
 }
+

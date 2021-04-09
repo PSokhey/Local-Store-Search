@@ -50,16 +50,21 @@
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search stores" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <div class="d-flex">
+
+          <a href="login.html" class="btn btn-dark">Login/Signup</a>
+
+          <input id="storeSearch" Class="form-control me-2" placeholder="Search stores">
+          <button id="searchSubmit" class="btn btn-outline-success">Search</button>
+        </div>
       </div>
     </div>
   </nav>
 
   <!-- Top of the page, just under navbar -->
-  <div class="container">
+  <div id="storeInformationError">
+  </div>
+  <div id="storeInformationBody" class="container">
     <div style="text-align:center;">
       <h1 class="display-4" id="storeName">Store Name Ltd.</h1>
       <p style="display: inline-block" class="storeRating fa"></p>
@@ -82,27 +87,27 @@
       </p>
       <div class="collapse" id="companyDesc">
         <div id="companyDescContainer" class="card card-body" style="text-align: left">
-            <div id="storeBio"></div>
+          <div id="storeBio"></div>
+          </br>
+          <p>
+            <b>Address: </b>
             </br>
-            <p>
-              <b>Address: </b>
-              </br>
-              <span id="storeAddress">1101 West 57th Street</span>
-              <span> || </span>
-              <span id="storePostalCode">V1V 1V1</span>
-            </p>
+            <span id="storeAddress">1101 West 57th Street</span>
+            <span> || </span>
+            <span id="storePostalCode">V1V 1V1</span>
+          </p>
 
-            <p><b>Hours: </b>
-              <ul id="storeHours">
-                <li>Monday: 8:30AM - 4:30AM</li>
-                <li>Tuesday: 8:30AM - 4:30AM</li>
-                <li>Wednesday: 8:30AM - 4:30AM</li>
-                <li>Thursday: 8:30AM - 4:30AM</li>
-                <li>Friday: 8:30AM - 4:30AM</li>
-                <li>Saturday: CLOSED</li>
-                <li>Sunday: CLOSED</li>
-              </ul>
-            </p>
+          <p><b>Hours: </b>
+            <ul id="storeHours">
+              <li>Monday: 8:30AM - 4:30AM</li>
+              <li>Tuesday: 8:30AM - 4:30AM</li>
+              <li>Wednesday: 8:30AM - 4:30AM</li>
+              <li>Thursday: 8:30AM - 4:30AM</li>
+              <li>Friday: 8:30AM - 4:30AM</li>
+              <li>Saturday: CLOSED</li>
+              <li>Sunday: CLOSED</li>
+            </ul>
+          </p>
         </div>
         <br />
       </div>
@@ -244,8 +249,6 @@
     <!--------------------------------------------------------------------->
     <script src="scripts/my_functions.js"></script>
     <script>
-
-
       // load store information using store UID from url
       function getDetails() {
         // https://some.site/?id=123
@@ -253,54 +256,70 @@
         //console.log(parsedUrl.searchParams.get("id")); // "123"
 
         // extract id from url, assign to variable
-        var id = parsedUrl.searchParams.get("id");
-        //console.log(id);
+        var storeID = parsedUrl.searchParams.get("storeID");
+        //console.log(storeID);
 
-        // use this ID to read from firestore
-        db.collection("storesDatabase")
-          .doc(id) // store ID that we extracted
-          .get() // REAC async
-          .then(function (doc) { // display details!
-            console.log(doc);
-            var name = doc.data().storeInformation.name;
-            var address = doc.data().storeInformation.address;
-            var postalCode = doc.data().storeInformation.postalCode;
-            var hours = doc.data().storeInformation.hours;
-            var bio = doc.data().storeInformation.storeBio;
+        // handle case where no storeID is found
+        if (storeID != null) {
 
-            var bannerImage = doc.data().imageGallery.image1;
 
-            var website = doc.data().externalLinks.link1;
-            var phone = doc.data().externalLinks.phoneNumber;
-            var email = doc.data().externalLinks.email;
+          // use this ID to read from firestore
+          db.collection("storesDatabase")
+            .doc(storeID) // store ID that we extracted
+            .get() // REAC async
+            .then(function (doc) { // display details!
+              //console.log(doc);
 
-            var hoursList = "<table><tr><td>";
-            var days=["Mon:&emsp;", "Tues:", "Wed:", "Thur:", "Fri:", "Sat:", "Sun:"];
-            for (var i = 0; i < hours.length; i++) {
-              hoursList += "<li>" + days[i] + "</li>";
-            }
-            hoursList += "</td><td>";
-            for (var i = 0; i < hours.length; i++) {
-              hoursList += hours[i] + "<br>";
-            }
+              // load store info. If store not found, give user error message
+              if (doc.exists) {
+                displayReviews();
 
-            hoursList += "</td></tr></table>";
+                var name = doc.data().storeInformation.name;
+                var address = doc.data().storeInformation.address;
+                var postalCode = doc.data().storeInformation.postalCode;
+                var hours = doc.data().storeInformation.hours;
+                var bio = doc.data().storeInformation.storeBio;
 
-            $("#storeName").html(name);
-            $("#storeAddress").html(address);
-            $("#storePostalCode").html(postalCode);
-            $("#storeBio").html(bio);
+                var bannerImage = doc.data().imageGallery.image1;
 
-            $("#storeHours").html(hoursList);
+                var website = doc.data().externalLinks.link1;
+                var phone = doc.data().externalLinks.phoneNumber;
+                var email = doc.data().externalLinks.email;
 
-            $("#storeImage").html("<img id='storeBannerImage' src='" + bannerImage + "'>");
-            $("#storeBannerImage").css("width", "50%");
-            
-            $("#storeEmail").html("Email: " + email);
-            $("#storePhone").html("Phone: " + phone);
-            $("#storeLink").html("Website: " + website);
-          })
+                var hoursList = "<table><tr><td>";
+                var days = ["Mon:&emsp;", "Tues:", "Wed:", "Thur:", "Fri:", "Sat:", "Sun:"];
+                for (var i = 0; i < hours.length; i++) {
+                  hoursList += "<li>" + days[i] + "</li>";
+                }
+                hoursList += "</td><td>";
+                for (var i = 0; i < hours.length; i++) {
+                  hoursList += hours[i] + "<br>";
+                }
 
+                hoursList += "</td></tr></table>";
+
+                $("#storeName").html(name);
+                $("#storeAddress").html(address);
+                $("#storePostalCode").html(postalCode);
+                $("#storeBio").html(bio);
+
+                $("#storeHours").html(hoursList);
+
+                $("#storeImage").html("<img id='storeBannerImage' src='" + bannerImage + "'>");
+                $("#storeBannerImage").css("width", "50%");
+
+                $("#storeEmail").html("Email: " + email);
+                $("#storePhone").html("Phone: " + phone);
+                $("#storeLink").html("Website: " + website);
+              } else {
+                $("#storeInformationBody").css("display", "none");
+                $("#storeInformationError").text(" Oops! The store you are trying to search has not been found. Please go back to the store search page and choose a store there.");
+                //console.log("store not found");
+              }
+
+
+            })
+        }
 
       }
       //getDetails();
