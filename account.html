@@ -34,7 +34,7 @@
                 More
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a id="profileGo" class="dropdown-item" href="#">Profile</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li>
                   <hr class="dropdown-divider">
@@ -157,13 +157,19 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
 
     <script src="scripts/firebase-api-storesearch.js"></script>
+    <script src="scripts/FunctionsPrabh.js"></script>
 
 <!--function for retrieving from the database-->
     <script>
       function displayUsers(){
-    db.collection("users").where("password", "==", "123").get()
-    .then(function(snap){
-        snap.forEach(function(doc){
+
+        const parsedUrl = new URL(window.location.href);
+        var userID = parsedUrl.searchParams.get("id");
+        console.log("Retrieved ID " + userID);
+        
+        //modified so will take id from url 
+    db.collection("users").doc(userID).get()
+    .then(function(doc){
             var emailInfo = doc.data().email;     
             console.log(emailInfo);
             var user = doc.data().name; 
@@ -210,7 +216,7 @@
            
 
            // document.getElementById(cityid).innerText = n;
-        })
+        
 
     })
 }
