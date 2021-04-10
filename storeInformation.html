@@ -73,6 +73,15 @@
         <div id="storeImage"><img src="https://dummyimage.com/800x400/000/fff&text=Featured+Image" class="img-fluid"
             alt="Store image"></div>
 
+
+            <!--favorite button-->
+
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button id="favorite" class="btn btn-primary" type="button" style="margin-top: 10px;">Favorite</button>
+            </div>
+
+
+
         <div class="card-body">
           <p id="companyImageCaption" class="card-text"></p>
         </div>
@@ -327,6 +336,63 @@
       getDetails();
       getSearchBar();
       refillSearchBar();
+    </script>
+
+
+  
+    <script>
+      // script for favorite store.
+
+      const parsedUrl = new URL(window.location.href);
+        //console.log(parsedUrl.searchParams.get("id")); // "123"
+
+        // extract id from url, assign to variable
+        var userID = parsedUrl.searchParams.get("id");
+        var storeID = parsedUrl.searchParams.get("storeID");
+        console.log("Prabh" + userID);
+        console.log("Prabh" + storeID);
+
+        document.getElementById("favorite")
+        .addEventListener("click", function() {
+
+          db.collection("users").doc(userID)
+          .get()
+          .then(function (doc) {
+
+            myStores = doc.data().favStores;
+            console.log("my list" + myStores);
+
+            toAdd = true;
+
+            for(i = 0; i < myStores.length ; i++) {
+
+              if(userID == myStores[i]) {
+                toAdd = false;
+                break;
+              }
+
+
+            }
+
+
+            if(toAdd) {
+
+              db.collection("users").doc(userID)
+                    .update({
+                    favStores: firebase.firestore.FieldValue.arrayUnion(storeID)
+                  });
+
+                  console.log("added" + storeID);
+
+            }
+
+
+          });
+
+
+
+});
+
     </script>
 
 </body>

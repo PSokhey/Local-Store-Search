@@ -248,7 +248,7 @@
                 var storeLink = document.createElement("a");
               storeLink.textContent = doc.data().storeInformation.name;
               storeLink.className = "list-group-item list-group-item-action";
-              storeLink.href = "storeInformation.html?search=local&storeID=" + doc.id; //shold be test[i] but sees it as undefined.
+              storeLink.href = "storeInformation.html?search=local&storeID=" + doc.id + "&id=" +userID; //shold be test[i] but sees it as undefined.
 ;
               document.getElementById("favorites").appendChild(storeLink);
 
