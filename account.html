@@ -243,19 +243,44 @@
                 .addEventListener("click", function() {
 
 
+                  tempName = document.getElementById("userNameHolder").value;
+                  tempAddress = document.getElementById("userAddressHolder").value;
+                  tempInfo = document.getElementById("userInfoHolder").value;
+
+                  if (tempName != "") {
+
+                    db.collection("users").doc(userID)
+                    .update({
+                    name: tempName
+                  });
+
+                  }
+
+                  if (tempAddress != "") {
+
+                  db.collection("users").doc(userID)
+                  .update({
+                  address: tempAddress
+                  });
+
+                  } 
+
+                  if (tempInfo != "") {
+
+                  db.collection("users").doc(userID)
+                  .update({
+                  personalDescription: tempInfo
+                  });
+
+                  } 
+
+                  
+
 
 
                   //update collection
                   
-                  console.log("is this working");
-                  db.collection("users").doc(userID)
-                  .update({
-                  name: document.getElementById("userNameHolder").value,
-                  email: document.getElementById("emailHolder").value,
-                  password: document.getElementById("passHolder").value
 
-                   // password: newPass
-                  });
 
 
 
