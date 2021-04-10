@@ -16,7 +16,7 @@
   <!-- Optional styles and scripts of your own -->
 
   <link rel="stylesheet" type="text/css" href="/styles/style.css" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -74,12 +74,12 @@
   </div>
 
 
-  
+
   <div id="resultsBody" class="container">
 
   </div>
 
-<!-- -------------------------------------------------------------------------------------------------- -->
+  <!-- -------------------------------------------------------------------------------------------------- 
   <div class="container">
     <h1 class="display-4" ; style="text-align: center;">List of Stores nearest to you</h1>
     <table class="table table-striped table-hover">
@@ -97,7 +97,7 @@
 
   </div>
 
-
+-->
 
 
   <!--footer-->
@@ -134,7 +134,12 @@
   <script src="/scripts/functions.js"></script>
   <script src="/scripts/search_scripts.js"></script>
   <script>
-    ShowStoresCollection();
+    getSearchBar();
+    refillSearchBar();
+    getResults();
+
+
+    //ShowStoresCollection();
   </script>
 </body>
 

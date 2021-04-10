@@ -47,7 +47,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <input class="btn btn-outline-success" type="button" value="Back to Search" onclick="history.back(-1)" />
           </li>
         </ul>
         <div class="d-flex">
@@ -64,7 +64,7 @@
   <!-- Top of the page, just under navbar -->
   <div id="storeInformationError">
   </div>
-  <div id="storeInformationBody" class="container">
+  <div id="storeInformationBody" class="container" style="display:none;">
     <div style="text-align:center;">
       <h1 class="display-4" id="storeName">Store Name Ltd.</h1>
       <p style="display: inline-block" class="storeRating fa"></p>
@@ -115,7 +115,7 @@
       <p>
         <a style="width: 180px" class="btn btn-primary" data-bs-toggle="collapse" href="#externalLink" role="button"
           aria-expanded="false" aria-controls="externalLink">
-          External Links
+          Contact Us
         </a>
       </p>
       <div class="collapse" id="externalLink">
@@ -248,6 +248,7 @@
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
     <script src="scripts/my_functions.js"></script>
+    <script src="scripts/search_scripts.js"></script>
     <script>
       // load store information using store UID from url
       function getDetails() {
@@ -311,6 +312,7 @@
                 $("#storeEmail").html("Email: " + email);
                 $("#storePhone").html("Phone: " + phone);
                 $("#storeLink").html("Website: " + website);
+                $("#storeInformationBody").css("display", "block");
               } else {
                 $("#storeInformationBody").css("display", "none");
                 $("#storeInformationError").text(" Oops! The store you are trying to search has not been found. Please go back to the store search page and choose a store there.");
@@ -322,7 +324,9 @@
         }
 
       }
-      //getDetails();
+      getDetails();
+      getSearchBar();
+      refillSearchBar();
     </script>
 
 </body>
