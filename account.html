@@ -84,17 +84,17 @@
                           <!--original label was disabledTextInput for input but will need to change-->
 
                           <label for="TextInput" class="form-label">Username </label>
-                          <input type="text" id="userNameHolder" class="form-control myText" placeholder="NAME">
+                          <input type="text" id="userNameHolder" class="form-control myText" placeholder="NA">
                         </div>
           
                         <div class="mb-3">
-                          <label for="TextInput" class="form-label">Email</label>
-                          <input type="text" id="emailHolder" class="form-control" placeholder="fake@gmail.com">
+                          <label for="TextInput" class="form-label">Address</label>
+                          <input type="text" id="userAddressHolder" class="form-control" placeholder="NA">
                         </div>
           
                         <div class="mb-3">
-                          <label for="TextInput" class="form-label">password</label>
-                          <input type="text" id="disabledTextInput" class="form-control" placeholder="********">
+                          <label for="TextInput" class="form-label">Tell us about yourself</label>
+                          <input type="text" id="userInfoHolder" class="form-control" placeholder="NA">
                         </div>              
                       </fieldset>
                     </form>
@@ -172,16 +172,17 @@
         //modified so will take id from url 
     db.collection("users").doc(userID).get()
     .then(function(doc){
-            var emailInfo = doc.data().email;     
-            console.log(emailInfo);
-            var user = doc.data().name; 
-            console.log(user);
-            var pass = doc.data().password;
-            console.log(pass);
+            var userAddress = doc.data().address;     
+            console.log(userAddress);
+            var userName = doc.data().name; 
+            console.log(userName);
+            var userInfo = doc.data().personalDescription;
+            console.log(userInfo);
  
-           document.getElementById("welcome").innerText = user;
-           document.getElementById("userNameHolder").placeholder = user;
-           document.getElementById("emailHolder").placeholder = emailInfo;
+           document.getElementById("welcome").innerText = userName;
+           document.getElementById("userNameHolder").placeholder = userName;
+           document.getElementById("userAddressHolder").placeholder = userAddress;
+           document.getElementById("userInfoHolder").placeholder = userInfo;
     
 
           
@@ -190,6 +191,17 @@
 
             var test = doc.data().favStores;
             console.log(test);
+
+            //if time add something sayng you have no favorites go look around.
+            if(test.length == 0) {
+
+              var noFavorites = document.createElement("a");
+           // storeLink.id = "forMore";
+           noFavorites.textContent = "Go Search and find some favorites!";
+            noFavorites.className = "list-group-item list-group-item-action";
+              document.getElementById("favorites").appendChild(noFavorites);
+
+            }
 
 
 
@@ -202,17 +214,22 @@
               document.getElementById("favorites").appendChild(storeLink);
 
               if(i==4) {
-                break;
-              }
-              
-            }
 
-            // adding a more page for full
+
+                 // adding a more page for full
             var storeLink = document.createElement("a");
             storeLink.id = "forMore";
             storeLink.textContent = "more..";
             storeLink.className = "list-group-item list-group-item-action";
               document.getElementById("favorites").appendChild(storeLink);
+
+
+                break;
+              }
+              
+            }
+
+           
 
 
               // modifying "more" click to pull up personal favorite page.
@@ -224,15 +241,41 @@
            // when you are udpating information
            document.getElementById("saveButton")
                 .addEventListener("click", function() {
+
+
+
+
+                  //update collection
                   
                   console.log("is this working");
                   db.collection("users").doc(userID)
                   .update({
-                    name: document.getElementById("userNameHolder").value
+                  name: document.getElementById("userNameHolder").value,
+                  email: document.getElementById("emailHolder").value,
+                  password: document.getElementById("passHolder").value
+
+                   // password: newPass
                   });
 
 
+
+    
+
+
+
+
+                  
+
+
+
+                  
+
+
                 });
+
+
+
+                
         
 
     })

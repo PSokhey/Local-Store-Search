@@ -135,8 +135,9 @@
                     if (authResult.additionalUserInfo.isNewUser) {         //if new user
                         db.collection("users").doc(user.uid).set({         //write to firestore
                                 name: user.displayName,                    //"users" collection
-                                email: user.email,                          //with authenticated user's ID (user.uid)
-                                favStores: []
+                                favStores: [],                          //with authenticated user's ID (user.uid)
+                                address: "NA",
+                                personalDescription: "Nothing yet"
                                 // need to save password but not working.
                             }).then(function () {
                                 console.log("New user added to firestore");
