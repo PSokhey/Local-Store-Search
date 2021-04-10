@@ -52,12 +52,13 @@
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
-                <form class="d-flex">
+                <div class="d-flex">
 
-
-                    <input class="form-control me-2" type="search" placeholder="Search stores" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                    <a href="login.html" class="btn btn-dark">Login/Signup</a>
+          
+                    <input id="storeSearch" Class="form-control me-2" placeholder="Search stores">
+                    <button id="searchSubmit" class="btn btn-outline-success">Search</button>
+                  </div>
             </div>
         </div>
     </nav>
@@ -124,7 +125,8 @@
     <!--------------------------------------------------------------------->
 
     <script src="/scripts/functions.js"></script>
-    </script>
-</body>
+    
+    <script src="scripts/search_scripts.js"></script>
+    <script>getSearchBar();</script></body>
 
 </html>

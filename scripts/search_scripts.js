@@ -128,7 +128,7 @@ function displayResults(storeList) {
 
     // post relevant stores from search on screen. Handle case where no relevant results were found
     if ((storeList == null) || (storeList.length == 0)) {
-        $("#searchTermsFull").text("No relevant stores were found for this search!");
+        $("#searchTermsSubtitle").text("No relevant stores were found for this search!");
         $("#errorMessage").text("Please check that there are no spelling errors, and consider broadening the search terms used.");
     } else {
         // display results on screen
@@ -138,7 +138,7 @@ function displayResults(storeList) {
                 .get() // read
                 .then(function (doc) { // display details!
                     //displayOneReview(doc, storeList) // send to another function to write to page
-                    console.log(doc.id);
+                    //console.log(doc.id);
 
                     var nameS = doc.data().storeInformation.name;
                     var ratingS = doc.data().cumulativeRating * 2;
