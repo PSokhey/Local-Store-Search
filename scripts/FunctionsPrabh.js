@@ -15,11 +15,19 @@ function sayHello() {
                     console.log(n);
                     //$("#username").text(n);
                    // document.getElementById("username").innerText = n;
+
+                   
                 })
 
                 document.getElementById("profileGo")
                 .addEventListener("click", function() {
                     window.location.href="account.html?id=" + user.uid;
+                });
+
+
+                document.getElementById("helpGo")
+                .addEventListener("click", function() {
+                    window.location.href="help.html?id=" + user.uid;
                 });
 
         } else {

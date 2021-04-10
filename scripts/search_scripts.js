@@ -190,9 +190,26 @@ function displayResults(storeList) {
 function addStoreListener(id) {
     document.getElementById(id)
         .addEventListener("click", function () {
+
             const parsedUrl = new URL(window.location.href);
             var searchID = (parsedUrl.searchParams.get("search"));
-            window.location.href="storeInformation.html?search=" + searchID + "&" + "storeID=" + id;
+
+
+            firebase.auth().onAuthStateChanged(function (user) {
+                
+
+                if(user) {
+                    window.location.href="storeInformation.html?search=" + searchID + "&" + "storeID=" + id + "&id=" + user.uid;
+                } else {
+
+                    window.location.href="storeInformation.html?search=" + searchID + "&" + "storeID=" + id;
+                }
+
+            });
+
+
+            
+            
         });
 
     var div = document.getElementById(id);
