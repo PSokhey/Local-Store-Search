@@ -61,13 +61,13 @@
       </div>
     </div>
   </nav>
-  <div class="container">
+  <div class="container" style="margin: 0 auto; text-align: center;">
     <h1v class="display-4"><span id="welcome"></span>'s Favorites</h1>
   </div>
 
 
   <!--favorites list-->
-  <div style="width: 45%">
+  <div style="width: 45%; margin : 0 auto;">
     <!--links for favorite pages-->
     <div class="list-group" id="favorites">
       <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
@@ -133,7 +133,7 @@
 
 
 
-          var emailInfo = doc.data().email;
+       //   var emailInfo = doc.data().email;
 
           // dispaying personal name on favorite page. 
           var user = doc.data().name;
@@ -152,14 +152,33 @@
 
           for (i = 0; i < test.length; i++) {
 
-            var storeLink = document.createElement("a");
-            storeLink.textContent = test[i];
-            storeLink.className = "list-group-item list-group-item-action";
-            storeLink.href = "storeInformation.html";
-            document.getElementById("favorites").appendChild(storeLink);
+
+db.collection("storesDatabase").doc(test[i])
+.get()
+.then(function (doc){
 
 
-          }
+
+  console.log("this is a test "  + doc.data().storeInformation.name);
+  console.log("testing the idnex " + i);
+  var storeLink = document.createElement("a");
+storeLink.textContent = doc.data().storeInformation.name;
+storeLink.className = "list-group-item list-group-item-action";
+storeLink.href = "storeInformation.html?search=local&storeID=" + doc.id; //shold be test[i] but sees it as undefined.
+;
+document.getElementById("favorites").appendChild(storeLink);
+
+
+
+});
+
+
+
+
+
+
+
+}
 
 
 

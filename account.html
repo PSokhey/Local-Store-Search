@@ -61,17 +61,18 @@
     </div>
 
     <!--responsive grid-->
-    <div class="container" style="padding: 3em; margin: 0 auto; width:75%; background-color: #dedede;" >
+    <div class="container" style="padding: 3em; margin: 0 auto; width:85%; background-color: #dedede;" >
       <div class="row">
         <div class="col-md-3">
 
-          <img src="https://dummyimage.com/200x200/000/fff" class="img-thumbnail" alt="Profile Picture">
+          <img id="profilePic" src="https://dummyimage.com/200x200/000/fff" class="img-thumbnail" alt="Profile Picture">
 
 
-          <div class="mb-3">
-            <label for="formFile" class="form-label">Change image</label>
-            <input class="form-control" type="file" id="formFile">
-          </div>
+          <form action="upload.php" method="post" enctype="multipart/form-data">
+            Select image to upload:
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload Image" name="submit">
+          </form>
 
         </div>
         <div class="col-lg-4" style="margin-Bottom:1em;">
@@ -232,40 +233,63 @@
 
             }
 
-
-
-            for (i = 0; i < test.length; i++) {
             
-              var storeLink = document.createElement("a");
-              storeLink.textContent = test[i];
+            for (i = 0; i < 5; i++) {
+
+
+              db.collection("storesDatabase").doc(test[i])
+              .get()
+              .then(function (doc){
+
+
+
+                console.log("this is a test "  + doc.data().storeInformation.name);
+                console.log("testing the idnex " + i);
+                var storeLink = document.createElement("a");
+              storeLink.textContent = doc.data().storeInformation.name;
               storeLink.className = "list-group-item list-group-item-action";
-              storeLink.href = "storeInformation.html";
+              storeLink.href = "storeInformation.html?search=local&storeID=" + doc.id; //shold be test[i] but sees it as undefined.
+;
               document.getElementById("favorites").appendChild(storeLink);
 
-              if(i==4) {
+              
+
+              });
 
 
-                 // adding a more page for full
-            var storeLink = document.createElement("a");
-            storeLink.id = "forMore";
-            storeLink.textContent = "more..";
-            storeLink.className = "list-group-item list-group-item-action";
-              document.getElementById("favorites").appendChild(storeLink);
 
-
-                break;
-              }
+              
+            
+              
               
             }
 
+          // end of the line.
+
+          if(test.length > 5) {
+
+
+// adding a more page for full
+var storeLink = document.createElement("a");
+storeLink.id = "forMore";
+storeLink.textContent = "Click here for more!";
+storeLink.className = "list-group-item list-group-item-action";
+document.getElementById("favorites").appendChild(storeLink);
+
+
+// modifying "more" click to pull up personal favorite page.
+document.getElementById("forMore")
+.addEventListener("click", function() {
+   window.location.href="favorites.html?id=" + userID;
+});
+
+
+//  break;
+}
            
 
 
-              // modifying "more" click to pull up personal favorite page.
-              document.getElementById("forMore")
-                .addEventListener("click", function() {
-                    window.location.href="favorites.html?id=" + userID;
-                });
+              
 
            // when you are udpating information
            document.getElementById("saveButton")
@@ -353,17 +377,6 @@ displayUsers();
     </script>
 
 
-<!--function for writing to the database (easier to add dummy values if needed)-->
-    <script>
-      function writeUser() {
-    var usersRef = db.collection("Users");
-
-    usersRef.add({
-        email: "something@gmail.com",                  
-        userName: "WashingtonBoy",    
-    });
-}
-    </script>
 
            
 <script src="scripts/search_scripts.js"></script>
