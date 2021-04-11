@@ -132,7 +132,17 @@
 
 
 
-          for (i = 0; i < test.length; i++) {
+          if(test.length == 0) {
+
+var noFavorites = document.createElement("a");
+// storeLink.id = "forMore";
+noFavorites.textContent = "Go search and find some favorites!";
+noFavorites.className = "list-group-item list-group-item-action";
+document.getElementById("favorites").appendChild(noFavorites);
+
+} else {
+
+for (i = 0; i < test.length; i++) {
 
 
 db.collection("storesDatabase").doc(test[i])
@@ -141,13 +151,13 @@ db.collection("storesDatabase").doc(test[i])
 
 
 
-  console.log("this is a test "  + doc.data().storeInformation.name);
-  console.log("testing the idnex " + i);
-  var storeLink = document.createElement("a");
+console.log("this is a test "  + doc.data().storeInformation.name);
+console.log("testing the idnex " + i);
+var storeLink = document.createElement("a");
 storeLink.textContent = doc.data().storeInformation.name;
 storeLink.className = "list-group-item list-group-item-action";
 storeLink.href = "storeInformation.html?search=local&storeID=" + doc.id + "&id=" +userID; //shold be test[i] but sees it as undefined.
-;
+
 document.getElementById("favorites").appendChild(storeLink);
 
 
@@ -155,12 +165,14 @@ document.getElementById("favorites").appendChild(storeLink);
 });
 
 
-
-
-
-
+}
 
 }
+
+
+
+
+// end of the line.
 
 
 

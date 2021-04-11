@@ -210,44 +210,72 @@
 
               var noFavorites = document.createElement("a");
            // storeLink.id = "forMore";
-           noFavorites.textContent = "Go Search and find some favorites!";
+           noFavorites.textContent = "Go search and find some favorites!";
             noFavorites.className = "list-group-item list-group-item-action";
               document.getElementById("favorites").appendChild(noFavorites);
 
+            } else if(test.length <= 5) {
+
+              for (i = 0; i < test.length; i++) {
+
+
+db.collection("storesDatabase").doc(test[i])
+.get()
+.then(function (doc){
+
+
+
+  console.log("this is a test "  + doc.data().storeInformation.name);
+  console.log("testing the idnex " + i);
+  var storeLink = document.createElement("a");
+storeLink.textContent = doc.data().storeInformation.name;
+storeLink.className = "list-group-item list-group-item-action";
+storeLink.href = "storeInformation.html?search=local&storeID=" + doc.id + "&id=" +userID; //shold be test[i] but sees it as undefined.
+
+document.getElementById("favorites").appendChild(storeLink);
+
+
+
+});
+
+
+}
+
+            }
+
+            else {
+
+              for (i = 0; i < 5; i++) {
+
+
+db.collection("storesDatabase").doc(test[i])
+.get()
+.then(function (doc){
+
+
+
+  console.log("this is a test "  + doc.data().storeInformation.name);
+  console.log("testing the idnex " + i);
+  var storeLink = document.createElement("a");
+storeLink.textContent = doc.data().storeInformation.name;
+storeLink.className = "list-group-item list-group-item-action";
+storeLink.href = "storeInformation.html?search=local&storeID=" + doc.id + "&id=" +userID; //shold be test[i] but sees it as undefined.
+
+document.getElementById("favorites").appendChild(storeLink);
+
+
+
+});
+
+
+}
+
             }
 
             
-            for (i = 0; i < 5; i++) {
-
-
-              db.collection("storesDatabase").doc(test[i])
-              .get()
-              .then(function (doc){
-
-
-
-                console.log("this is a test "  + doc.data().storeInformation.name);
-                console.log("testing the idnex " + i);
-                var storeLink = document.createElement("a");
-              storeLink.textContent = doc.data().storeInformation.name;
-              storeLink.className = "list-group-item list-group-item-action";
-              storeLink.href = "storeInformation.html?search=local&storeID=" + doc.id + "&id=" +userID; //shold be test[i] but sees it as undefined.
-;
-              document.getElementById("favorites").appendChild(storeLink);
-
-              
-
-              });
-
-
-
-              
             
-              
-              
-            }
 
-          // end of the line.
+          // a 'more' link will appear for rest of list. 
 
           if(test.length > 5) {
 

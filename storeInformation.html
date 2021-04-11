@@ -60,8 +60,30 @@
             <!--favorite button-->
 
             <div class="d-grid gap-2 col-6 mx-auto">
-              <button id="favorite" class="btn btn-primary" type="button" style="margin-top: 10px;">Favorite</button>
+              <button id="favorite" class="btn btn-primary" type="button" style="margin-top: 10px;"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Favorite</button>
             </div>
+
+
+            <!--pop up for favoirte-->
+            <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Favorites update</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="popUpBody">
+        Your favorite list has been updated.
+      </div>
+      <div class="modal-footer">
+        <button id="understood" type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 
 
@@ -365,6 +387,7 @@
                   });
 
                   console.log("added" + storeID);
+  
 
             }
 
@@ -376,6 +399,14 @@
 });
 
     </script>
+        <script>
+
+          document.getElementById("understood")
+          .addEventListener("click", function() {
+            window.location.reload();
+          });
+
+</script>
 
 </body>
 
