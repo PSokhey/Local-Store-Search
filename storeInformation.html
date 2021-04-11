@@ -185,7 +185,7 @@
                 aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header" id="addReviewContainer">
                       <h5 class="modal-title" id="customerReviewMenuTitle">Add New Review</h5>
                       <button type="button" class="btn-close btn-dark" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -383,11 +383,7 @@
                 toAdd = false;
                 break;
               }
-
-
             }
-
-
             if(toAdd) {
 
               db.collection("users").doc(userID)
@@ -396,14 +392,8 @@
                   });
 
                   console.log("added" + storeID);
-  
-
             }
-
-
           });
-
-
 
 });
 
@@ -416,6 +406,18 @@
           });
 
 </script>
+
+<script>
+  function checkLogin() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (!user) {
+            // if nobody logged in, don't give ability to add review
+            $("#addReviewContainer").css("display", "none");
+        } 
+    });
+}
+checkLogin();
+  </script>
 
 </body>
 
