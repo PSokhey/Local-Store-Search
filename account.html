@@ -7,13 +7,21 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
+    <style>
+      body {
+        background-color: #EEF0F2;
+      }
+  
+      .navBars {
+        background-color: #EEC643;
+      }
+    </style>
     <title>Store Search Locator</title>
   </head>
   <body>
 
     <!--Nav bar-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <nav class="navbar navbar-expand-lg navbar-light navBars">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Local store search</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -84,7 +92,7 @@
                     </form>
           
                     <div class="d-grid gap-2">
-                      <button id="saveButton" class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">save</button>
+                      <button id="saveButton" class="btn btn-primary btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">save</button>
                     </div>
 
         </div>
@@ -109,13 +117,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Updated</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-dark" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         Your personal information has been updated!
       </div>
       <div class="modal-footer">
-        <button id="understood" type="button" class="btn btn-primary">Understood</button>
+        <button id="understood" type="button" class="btn btn-primary btn-dark">Understood</button>
       </div>
     </div>
   </div>
@@ -138,10 +146,10 @@
 
   <!--footer-->
   <!--footer-->
-  <nav class="navbar fixed-bottom navbar-light bg-light">
+  <nav class="navbar fixed-bottom navbar-light navBars">
     <div class="container-fluid">
-      <button id="homeGO" class="btn btn-primary" type="button">Home</button>
-      <button id="favoritesGo" class="btn btn-primary" type="reset" value="Favorites">Favorites</button>
+      <button id="homeGO" class="btn btn-primary btn-dark" type="button">Home</button>
+      <button id="favoritesGo" class="btn btn-primary btn-dark" type="reset" value="Favorites">Favorites</button>
     </div>
   </nav>
 
