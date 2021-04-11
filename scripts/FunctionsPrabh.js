@@ -30,6 +30,22 @@ function sayHello() {
                     window.location.href="help.html?id=" + user.uid;
                 });
 
+
+                document.getElementById("favoritesGo")
+                .addEventListener("click", function() {
+                    window.location.href="favorites.html?id=" + user.uid;
+                });
+
+                document.getElementById("homeGO")
+                .addEventListener("click", function() {
+                    window.location.href="mainpage.html?id=" + user.uid;
+                });
+                
+
+                
+
+                
+
         } else {
             // No user is signed in.
         }

@@ -12,3 +12,12 @@ const parsedUrl = new URL(window.location.href);
                 .addEventListener("click", function() {
                     window.location.href="help.html?id=" + userID;
                 });
+
+
+
+                document.getElementById("homeGo").addEventListener("click", function() {
+                    window.location.href="mainpage.html?id=" + userID;
+                });
+
+
+
