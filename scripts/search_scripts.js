@@ -41,7 +41,6 @@ function getResults() {
 
             // iterate through all stores
             store.forEach(function (doc) {
-
                 isStored = false;
 
                 // iterate through each word of search
@@ -97,9 +96,8 @@ function getResults() {
                 storeArray[k] = list[k].name;
                 relevance[k] = list[k].rel;
             }
-
-            displayResults(storeArray)
-
+            displayResults(storeArray);
+            
             /* after sort logging
             console.log("storeArray: " + storeArray);
             console.log("relevance: " + relevance);
@@ -169,8 +167,8 @@ function displayResults(storeList) {
                         '<img src="' + imageS + '" alt="userIcon" style="width: 100px; height: 100px; display: block;">' +
                         '<p style="display: inline-block" class="star1user fa">' + ratingString + '</p>' +
                         '</div>' +
-                        '<div class="col-md-9">' +
-                        '<div class="card-body">' +
+                        '<div class="col-md-4" style="max-width: 250px">' +
+                        '<div class="card-body" style="display: inline-block">' +
                         '<h5 class="card-title username">' + nameS + '</h5>' +
                         '<p class="card-text comment">' + phoneS + '</p>' +
                         '<p class="card-text"><small class="text-muted datePosted">' + addressS + '</small></p>' +
@@ -196,20 +194,13 @@ function addStoreListener(id) {
 
 
             firebase.auth().onAuthStateChanged(function (user) {
-                
-
                 if(user) {
                     window.location.href="storeInformation.html?search=" + searchID + "&" + "storeID=" + id + "&id=" + user.uid;
                 } else {
 
                     window.location.href="storeInformation.html?search=" + searchID + "&" + "storeID=" + id;
                 }
-
-            });
-
-
-            
-            
+            }); 
         });
 
     var div = document.getElementById(id);

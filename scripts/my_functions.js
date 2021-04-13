@@ -5,10 +5,11 @@ function displayOneReview(doc) {
     var ratingR = doc.data().rating * 2;
     var commentR = doc.data().comment;
     var dateR = doc.data().date;
-    var imageR = "https://dummyimage.com/800x400/000/fff&text=Store+Image"; // *** need to change to stored picture
+    var imageR = "https://dummyimage.com/800x400/000/fff&text=Store+Image"; // *** need to change to stored picture...future feature, unique image for user not done.
 
     // convert UID into username and profile picture
-    db.collection("users").doc(userUID)
+    db.collection("users")
+        .doc(userUID)
         .get()
         .then(function (snap) {
             usernameR = snap.data().name;
@@ -42,8 +43,8 @@ function displayOneReview(doc) {
                 '</div>';
             $("#comments-go-here").append(codeString);
 
-            var numberComment = +document.getElementById("numComment").innerHTML;
-            $("#numComment").text(numberComment + 1);
+            //var numberComment = +document.getElementById("numComment").innerHTML;
+            //$("#numComment").text(numberComment + 1);
         })
 }
 
@@ -61,6 +62,8 @@ function displayReviews() {
     db.collection("storesDatabase")
         .doc(storeID)
         .collection("customerReviews") // store ID that we extracted
+        .orderBy("timestamp", "desc")
+        .limit(5)
         .get() // REAC async
         .then(function (snap) { // display details!
             snap.forEach(function (doc) {
@@ -68,13 +71,24 @@ function displayReviews() {
             })
             // update the store's overall rating
             updateStoreRating();
+            
+            // display # of comments
+        db.collection("storesDatabase")
+        .doc(storeID)
+        .collection("customerReviews")
+        .get()
+        .then(function (test) {
+            if (test.size != null) {
+                $("#numComment").text(test.size);
+            }
+        }) 
         })
-}
 
+        
+}
 
 // function for handling when a new review is posted
 function createComment() {
-
     // grab url
     const parsedUrl = new URL(window.location.href);
     // extract id from url, assign to variable
@@ -144,7 +158,6 @@ function updateStoreRating() {
     const parsedUrl = new URL(window.location.href);
     // extract id from url, assign to variable
     var storeID = parsedUrl.searchParams.get("storeID");
-
     var ratingR;
     var sum = 0;
     var divisor = 0;
@@ -158,12 +171,10 @@ function updateStoreRating() {
                 sum += doc.data().rating * 2;
                 divisor++;
             })
-
             // if there is at least 1 customer review, calculate the average rating
             if (divisor != 0) {
                 var average = sum / divisor;
             }
-
             // create string for star rating and put into appropriate tag on page
             var halfStar = 0;
             var rating = "";
@@ -180,7 +191,6 @@ function updateStoreRating() {
                     rating = rating + "&#xf006;";
                 }
             }
-
             // append number of reviews to star rating, making "review" plural/singular where appropriate
             rating += " " + divisor + " Review" + ((divisor == 1) ? "" : "s");
             document.getElementById("storeRating").innerHTML = rating;
@@ -193,9 +203,8 @@ function updateStoreRating() {
         })
 }
 
-
+// function for adding more data to database; just for testing purposes only
 function writeData() {
-    //this is an array of JSON objects copied from open source data
     var stores = [{
         "cumulativeRating": 0,
 			"storeInformation": {
