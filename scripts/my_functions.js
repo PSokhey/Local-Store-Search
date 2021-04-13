@@ -32,7 +32,7 @@ function displayOneReview(doc) {
                 '<img src="' + imageR + '" alt="userIcon" style="width: 100px; height: 100px; display: block;">' +
                 '<p style="display: inline-block" class="star1user fa">' + ratingString + '</p>' +
                 '</div>' +
-                '<div class="col-md-9">' +
+                '<div class="col-md-9" style="max-width: 70%;">' +
                 '<div class="card-body">' +
                 '<h5 class="card-title username">' + usernameR + '</h5>' +
                 '<p class="card-text comment">' + commentR + '</p>' +
@@ -71,20 +71,20 @@ function displayReviews() {
             })
             // update the store's overall rating
             updateStoreRating();
-            
+
             // display # of comments
-        db.collection("storesDatabase")
-        .doc(storeID)
-        .collection("customerReviews")
-        .get()
-        .then(function (test) {
-            if (test.size != null) {
-                $("#numComment").text(test.size);
-            }
-        }) 
+            db.collection("storesDatabase")
+                .doc(storeID)
+                .collection("customerReviews")
+                .get()
+                .then(function (test) {
+                    if (test.size != null) {
+                        $("#numComment").text(test.size);
+                    }
+                })
         })
 
-        
+
 }
 
 // function for handling when a new review is posted
@@ -199,19 +199,21 @@ function updateStoreRating() {
             var ratingRef = db.collection("storesDatabase").doc(storeID);
             ratingRef.set({
                 cumulativeRating: average / 2
-            }, { merge: true });
+            }, {
+                merge: true
+            });
         })
 }
 
 // function for adding more data to database; just for testing purposes only
 function writeData() {
     var stores = [{
-        "cumulativeRating": 0,
-			"storeInformation": {
+            "cumulativeRating": 0,
+            "storeInformation": {
                 "name": "Superstar Plumbing",
-                
+
                 "storeBio": "Your go to shop for local plumbing parts and services",
-				"address": "7513 Victoria Drive",
+                "address": "7513 Victoria Drive",
                 "postalCode": "75282",
                 "hours": [
                     "8:00AM - 10:00PM",
@@ -233,8 +235,8 @@ function writeData() {
             } //,
             //"customerReviews": {}
         },
-        {	
-			"cumulativeRating": 0,
+        {
+            "cumulativeRating": 0,
             "storeInformation": {
                 "name": "Walter's Groceries",
                 "storeBio": "Bringing the best produce at a cheap price!",
@@ -267,4 +269,3 @@ function writeData() {
         db.collection("storesDatabase").add(oneStore)
     })
 }
-
