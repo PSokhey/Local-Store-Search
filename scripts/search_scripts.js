@@ -97,7 +97,7 @@ function getResults() {
                 relevance[k] = list[k].rel;
             }
             displayResults(storeArray);
-            
+
             /* after sort logging
             console.log("storeArray: " + storeArray);
             console.log("relevance: " + relevance);
@@ -194,23 +194,23 @@ function addStoreListener(id) {
 
 
             firebase.auth().onAuthStateChanged(function (user) {
-                if(user) {
-                    window.location.href="storeInformation.html?search=" + searchID + "&" + "storeID=" + id + "&id=" + user.uid;
+                if (user) {
+                    window.location.href = "storeInformation.html?search=" + searchID + "&" + "storeID=" + id + "&id=" + user.uid;
                 } else {
 
-                    window.location.href="storeInformation.html?search=" + searchID + "&" + "storeID=" + id;
+                    window.location.href = "storeInformation.html?search=" + searchID + "&" + "storeID=" + id;
                 }
-            }); 
+            });
         });
 
     var div = document.getElementById(id);
 
     $("#" + id).css("cursor", "pointer");
     $("#" + id).css("background-color", "#f2f2f2");
-    $("#" + id).hover(function(){
+    $("#" + id).hover(function () {
         $(this).css("background-color", "#d9d9d9");
-        }, function(){
+    }, function () {
         $(this).css("background-color", "#f2f2f2");
-      });
+    });
 
 }

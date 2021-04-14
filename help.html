@@ -1,180 +1,207 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style>
-      body {
-        background-color: #EEF0F2;
-      }
-  
-      .navBars {
-        background-color: #EEC643;
-      }
-    </style>
-    <title>Local store search</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-  </head>
-  <body>
+  <style>
+    body {
+      background-color: #EEF0F2;
+    }
 
-    <!----header-->
-    <nav class="navbar navbar-expand-lg navbar-light navBars">
-        <div class="container-fluid">
-          <a class="navbar-brand">Find Local</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a id="profileGo" class="nav-link" href="#">Profile</a>
-              </li>
-              <li class="nav-item">
-                <a id="helpGo" class="nav-link" href="#">Help</a>
-              </li>
-            </ul>
-            <div class="d-flex">
+    .navBars {
+      background-color: #EEC643;
+    }
+  </style>
+  <title>Local store search</title>
 
-              <a href="login.html" class="btn btn-dark">Logout</a>
-    
-              <input id="storeSearch" Class="form-control me-2" placeholder="Search stores">
-              <button id="searchSubmit" class="btn btn-outline-success">Search</button>
-            </div>
-          </div>
+</head>
+
+<body>
+
+  <!----header-->
+  <nav class="navbar navbar-expand-lg navbar-light navBars">
+    <div class="container-fluid">
+      <a class="navbar-brand">Find Local</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a id="profileGo" class="nav-link" href="#">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a id="helpGo" class="nav-link" href="#">Help</a>
+          </li>
+        </ul>
+        <div class="d-flex">
+
+          <a href="login.html" class="btn btn-dark">Logout</a>
+
+          <input id="storeSearch" Class="form-control me-2" placeholder="Search stores">
+          <button id="searchSubmit" class="btn btn-outline-success">Search</button>
         </div>
-      </nav>
-    
-      <div class="container">
-        <h1 class="display-4" style="text-align: center;">Help</h1>
       </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="display-4" style="text-align: center;">Help</h1>
+  </div>
 
 
-      <!--collapsable options-->
-      <div class="accordion" id="accordionExample" style="margin-bottom: 5em;">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-              Can I remove from my favorites list?
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>Current version only lets you add to favorites, future patch will let your remove from list.</strong>
-            </div>
-          </div>
+  <!--collapsable options-->
+  <div class="accordion" id="accordionExample" style="margin-bottom: 5em;">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+          aria-expanded="false" aria-controls="collapseOne">
+          Can I remove from my favorites list?
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>Current version only lets you add to favorites, future patch will let your remove from list.</strong>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Can I change my email and/or password?
-            </button>
-          </h2>
-          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>Future version will integrate your google account to login, for better security we wont be saving the password on our side.</strong>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Can I search what is nearest to me?
-            </button>
-          </h2>
-          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>Future version will be integrated with google and google maps to view what is around your current location.</strong>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingFour">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-              How can I change the filtering of the search bar?
-            </button>
-          </h2>
-          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>Currently, this is the beta launch of our app. Many features such as search/customer review filtering are still under development. Please refer to our social media page on Twitter for regular updates on new features being added, bugs being fixed, etc.</strong>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingFive">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseTwo">
-              Why isn't a certain store listed?
-            </button>
-          </h2>
-          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>If you are unable to search for a certain store, please check the spelling of the words in the search bar, or try broadening which terms you use. If you still cannot find the store, chances are it has not been added to the database. Please leave us feedback outlining the missing store; you may also contact that store in question to ask them to sign up with us!</strong>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingSix">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseTwo">
-              Unable to add customer reviews?
-            </button>
-          </h2>
-          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>When viewing a store information page, if you are unable to add reviews, or do not see the "add review" button at all, you may not be logged in, or your login expired for some reason. Logging in again should resolve the issue. Please contact customer service or leave us some feedback if the problem persists.</strong>
-            </div>
-          </div>
-        </div>
-        
       </div>
-
-
-
-
-      <!--pop up message-->
-
-      <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel"><span id="popHeader"></span></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+          aria-expanded="false" aria-controls="collapseTwo">
+          Can I change my email and/or password?
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>Future version will integrate your google account to login, for better security we wont be saving the
+            password on our side.</strong>
+        </div>
       </div>
-      <div class="modal-body">
-        <span id="popBody"></span>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Can I search what is nearest to me?
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>Future version will be integrated with google and google maps to view what is around your current
+            location.</strong>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button id="understood" type="button" class="btn btn-primary">Understood</button>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFour">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+          How can I change the filtering of the search bar?
+        </button>
+      </h2>
+      <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>Currently, this is the beta launch of our app. Many features such as search/customer review filtering
+            are still under development. Please refer to our social media page on Twitter for regular updates on new
+            features being added, bugs being fixed, etc.</strong>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFive">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseTwo">
+          Why isn't a certain store listed?
+        </button>
+      </h2>
+      <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>If you are unable to search for a certain store, please check the spelling of the words in the search
+            bar, or try broadening which terms you use. If you still cannot find the store, chances are it has not been
+            added to the database. Please leave us feedback outlining the missing store; you may also contact that store
+            in question to ask them to sign up with us!</strong>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingSix">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix"
+          aria-expanded="false" aria-controls="collapseTwo">
+          Unable to add customer reviews?
+        </button>
+      </h2>
+      <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>When viewing a store information page, if you are unable to add reviews, or do not see the "add
+            review" button at all, you may not be logged in, or your login expired for some reason. Logging in again
+            should resolve the issue. Please contact customer service or leave us some feedback if the problem
+            persists.</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  <!--pop up message-->
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel"><span id="popHeader"></span></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <span id="popBody"></span>
+        </div>
+        <div class="modal-footer">
+          <button id="understood" type="button" class="btn btn-primary">Understood</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
 
-      <!--feedback for-->
-      <div Style =" width: 50%; margin: 0 auto; margin-bottom: 100px;">
-      <div class="mb-3">
-        <h1 class="display-4" style="text-align: center;">Need more help? Send us a message!</h1>
-        <label for="TextInput" class="form-label">email (optional)</label>
-        <input type="text" id="emailForm" class="form-control" placeholder="name@gmail.com">
-      </div>
-      <div class="mb-3">
-        <label for="TextInput" class="form-label">Briefly explain the issue...</label>
-        <input type="text" id="requestForm" class="form-control" placeholder="How can we help?">
-      </div>
-      <div class="d-grid gap-2">
-        <button id="submitButton" class="btn btn-primary btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Submit</button>
-      </div>
+  <!--feedback for-->
+  <div Style=" width: 50%; margin: 0 auto; margin-bottom: 100px;">
+    <div class="mb-3">
+      <h1 class="display-4" style="text-align: center;">Need more help? Send us a message!</h1>
+      <label for="TextInput" class="form-label">email (optional)</label>
+      <input type="text" id="emailForm" class="form-control" placeholder="name@gmail.com">
     </div>
+    <div class="mb-3">
+      <label for="TextInput" class="form-label">Briefly explain the issue...</label>
+      <input type="text" id="requestForm" class="form-control" placeholder="How can we help?">
+    </div>
+    <div class="d-grid gap-2">
+      <button id="submitButton" class="btn btn-primary btn-dark" type="button" data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop">Submit</button>
+    </div>
+  </div>
 
-      
+
 
 
 
@@ -186,43 +213,44 @@
     </div>
   </nav>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+  <!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
   </script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
     -->
 
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
 
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
-  
-    <script src="scripts/firebase-api-storesearch.js"></script>
-    
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
 
-
-    
-
-    <script src="scripts/FunctionsPrabh.js"></script>
-    <script src="scripts/search_scripts.js"></script>
-    <script>getSearchBar();</script>
+  <script src="scripts/firebase-api-storesearch.js"></script>
 
 
-    <script>
 
-      //submit feedback form. 
 
-      document.getElementById("submitButton")
-      .addEventListener("click", function() {
+
+  <script src="scripts/FunctionsPrabh.js"></script>
+  <script src="scripts/search_scripts.js"></script>
+  <script>
+    getSearchBar();
+  </script>
+
+
+  <script>
+    //submit feedback form. 
+
+    document.getElementById("submitButton")
+      .addEventListener("click", function () {
 
 
         const parsedUrl = new URL(window.location.href);
@@ -231,12 +259,12 @@
         feedbackEmail = document.getElementById("emailForm").value;
         feedbackForm = document.getElementById("requestForm").value;
 
-        if(feedbackForm != "") {
-          
+        if (feedbackForm != "") {
+
           document.getElementById("popHeader").innerText = "Submitted";
           document.getElementById("popBody").innerText = "Thank you for your feedback!";
 
-          if(feedbackEmail == "") {
+          if (feedbackEmail == "") {
 
             db.collection("feedback").doc().set({
 
@@ -244,10 +272,10 @@
               request: feedbackForm
 
             })
-          
+
           } else {
 
-            db.collection("feedback").doc(userID). set({
+            db.collection("feedback").doc(userID).set({
 
               email: feedbackEmail,
               request: feedbackForm
@@ -257,7 +285,7 @@
 
           }
 
-          
+
 
         } else {
 
@@ -268,14 +296,14 @@
       });
 
 
-      document.getElementById("understood")
-      .addEventListener("click", function() {
+    document.getElementById("understood")
+      .addEventListener("click", function () {
         window.location.reload();
       });
+  </script>
 
-</script>
 
-   
-    
-  </body>
+
+</body>
+
 </html>

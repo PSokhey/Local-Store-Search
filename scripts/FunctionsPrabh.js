@@ -14,37 +14,37 @@ function sayHello() {
                     var n = doc.data().name;
                     console.log(n);
                     //$("#username").text(n);
-                   // document.getElementById("username").innerText = n;
+                    // document.getElementById("username").innerText = n;
 
-                   
+
                 })
 
-                document.getElementById("profileGo")
-                .addEventListener("click", function() {
-                    window.location.href="account.html?id=" + user.uid;
+            document.getElementById("profileGo")
+                .addEventListener("click", function () {
+                    window.location.href = "account.html?id=" + user.uid;
                 });
 
 
-                document.getElementById("helpGo")
-                .addEventListener("click", function() {
-                    window.location.href="help.html?id=" + user.uid;
+            document.getElementById("helpGo")
+                .addEventListener("click", function () {
+                    window.location.href = "help.html?id=" + user.uid;
                 });
 
 
-                document.getElementById("favoritesGo")
-                .addEventListener("click", function() {
-                    window.location.href="favorites.html?id=" + user.uid;
+            document.getElementById("favoritesGo")
+                .addEventListener("click", function () {
+                    window.location.href = "favorites.html?id=" + user.uid;
                 });
 
-                document.getElementById("homeGO")
-                .addEventListener("click", function() {
-                    window.location.href="mainpage.html?id=" + user.uid;
+            document.getElementById("homeGO")
+                .addEventListener("click", function () {
+                    window.location.href = "mainpage.html?id=" + user.uid;
                 });
-                
 
-                
 
-                
+
+
+
 
         } else {
             // No user is signed in.

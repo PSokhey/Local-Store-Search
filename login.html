@@ -27,6 +27,23 @@
         <div class="container-fluid">
             <a class="navbar-brand">Find Local</a> </div>
         </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display:none;">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a id="profileGo" class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a id="helpGo" class="nav-link" href="#">Help</a>
+                </li>
+            </ul>
+            <div class="d-flex">
+
+                <a href="login.html" class="btn btn-dark">Logout</a>
+
+                <input id="storeSearch" Class="form-control me-2" placeholder="Search stores">
+                <button id="searchSubmit" class="btn btn-outline-success">Search</button>
+            </div>
+        </div>
     </nav>
 
     <!--Page center content-->
@@ -39,7 +56,14 @@
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
 
-
+        <!--footer-->
+        <nav class="navbar fixed-bottom navbar-light navBars">
+            <div class="container-fluid" style="display: none;">
+                <button id="homeGO" class="btn btn-primary btn-dark" type="button">Home</button>
+                <button id="favoritesGo" class="btn btn-primary btn-dark" type="reset"
+                    value="Favorites">Favorites</button>
+            </div>
+        </nav>
 
 
 
@@ -85,16 +109,17 @@
                     // The Firestore rules must allow the user to write. 
                     //------------------------------------------------------------------------------------------
                     var user = authResult.user;
-                    if (authResult.additionalUserInfo.isNewUser) {         //if new user
-                        db.collection("users").doc(user.uid).set({         //write to firestore
-                                name: user.displayName,                    //"users" collection
-                                favStores: [],                          //with authenticated user's ID (user.uid)
+                    if (authResult.additionalUserInfo.isNewUser) { //if new user
+                        db.collection("users").doc(user.uid).set({ //write to firestore
+                                name: user.displayName, //"users" collection
+                                favStores: [], //with authenticated user's ID (user.uid)
                                 address: "NA",
                                 personalDescription: "Nothing yet"
                                 // need to save password but not working.
                             }).then(function () {
                                 console.log("New user added to firestore");
-                                window.location.assign("mainpage.html");       //re-direct to main.html after signup
+                                window.location.assign(
+                                "mainpage.html"); //re-direct to main.html after signup
                             })
                             .catch(function (error) {
                                 console.log("Error adding new user: " + error);
@@ -132,7 +157,7 @@
         // The start method will wait until the DOM is loaded.
         ui.start('#firebaseui-auth-container', uiConfig);
     </script>
-     
+
 </body>
 
 </html>
