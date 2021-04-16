@@ -36,11 +36,16 @@ It has the following subfolders and files:
 ├── images                        # Folder for images
     /profileImage                 # Folder for handling profile picture
         /upload.php               # File for handling profile picture upload for users (work in progress)
-    /01Grocery5.jpg               # 
-    /blah.jpg                     # default image
-    /Clothing.jpg                 # 
-    /furniture.jpg                # 
-    /stationary.jpg               # 
+    /01Grocery5.jpg               # Photo by Raysonho:
+                                  #    https://upload.wikimedia.org/wikipedia/commons/d/d3/EmpressWalkLoblaws-Vivid.jpg 
+    /blah.jpg                     # default image   
+    /stationary.jpg               # Photo by Bidgee (Creative Commons Attribution 3.0 Unported license)
+                                  #    https://upload.wikimedia.org/wikipedia/commons/f/fc/Dick_Smith_Electronics.jpg 
+    /furniture.jpg                # Photo by Creative Home Furnishings:
+                                  #    https://www.creativehome.ca/wp-content/uploads/Vancouver-furniture-store-outside-1.jpg
+    /Clothing.jpg                 # Photo by Poh Wei Cheun: 
+                                  #    https://unsplash.com/s/photos/storefront?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+  
 ├── scripts                       # Folder for scripts
     /firebase-api-storesearch.js  # Firebase API
     /prabhFunctions.js            # Development scripts before merging with main js file
@@ -59,7 +64,7 @@ Firebase hosting files:
 ```
 
 Other credits:
-Image for customer reviews linked from: https://dummyimage.com
+Image for customer reviews/user profile linked from: https://dummyimage.com
 
 
 Tips for file naming files and folders:
