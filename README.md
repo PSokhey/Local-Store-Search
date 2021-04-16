@@ -33,7 +33,6 @@ It has the following subfolders and files:
 ├── futureFeatures                # Folder for code that may be used in future development
     /deals.html                   # Page for product discounts
     /searchResult.html            # Development of search/sort by distance from user
-    /functions.js                 # Scripts for search/sort by distance from user
 ├── images                        # Folder for images
     /profileImage                 # Folder for handling profile picture
         /upload.php               # File for handling profile picture upload for users (work in progress)
@@ -49,6 +48,7 @@ It has the following subfolders and files:
     /customer_review_functions.js # Scripts for handling customer review of store information page
     /searchFunctions.js           # Scripts for handling search bar and search related tasks, sorting algorithm code modified from: 
                                   #   https://stackoverflow.com/questions/11499268/sort-two-arrays-the-same-way used
+    /functions.js                 # Scripts for search/sort by distance from user
 ├── styles                        # Folder for styles
     /blah.css                     # default css file
 
