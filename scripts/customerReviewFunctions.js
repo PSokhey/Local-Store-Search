@@ -1,4 +1,4 @@
-// the "my_functions.js" is written by Joseph and includes functions used for the customer review section of storeInformation.html
+// the "customerReviewFunctions.js" is written by Joseph and includes functions used for the customer review section of storeInformation.html
 //     and other rating related values functionality of that page.
 
 // Helper function for posting 1 review. Receives review collection, posts specified information and updates number of comments

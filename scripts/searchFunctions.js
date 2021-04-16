@@ -1,4 +1,4 @@
-// the "search_scripts.js" is written by Joseph and includes functions used for the showSearch.html page
+// the "searchFunctions.js" is written by Joseph and includes functions used for the showSearch.html page
 //     and other search related functionality of pages (i.e. the search bar on each page).
 
 
