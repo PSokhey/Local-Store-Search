@@ -1,4 +1,4 @@
-// Writteb by Prabh: my experimental functions here bere combining with main javascript folder
+// Written by Prabh: my experimental functions here bere combining with main javascript folder
 
 
 // function will keep track of user's UID on any page they are in. Add listeners to buttons on nav bar/

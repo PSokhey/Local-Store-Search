@@ -44,7 +44,7 @@ It has the following subfolders and files:
     /stationary.jpg               # 
 ├── scripts                       # Folder for scripts
     /firebase-api-storesearch.js  # Firebase API
-    /FunctionsPrabh.js            # Development scripts before merging with main js file
+    /prabhFunctions.js            # Development scripts before merging with main js file
     /linkFunctions.js             # Scripts for linking buttons to correct app pages
     /customer_review_functions.js # Scripts for handling customer review of store information page
     /searchFunctions.js           # Scripts for handling search bar and search related tasks, sorting algorithm code modified from: 
