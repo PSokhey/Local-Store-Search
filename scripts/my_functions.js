@@ -1,5 +1,11 @@
-// helper function for posting 1 review. Receives review collection, posts specified information and updates number of comments
+// the "my_functions.js" is written by Joseph and includes functions used for the customer review section of storeInformation.html
+//     and other rating related values functionality of that page.
+
+// Helper function for posting 1 review. Receives review collection, posts specified information and updates number of comments
+// INPUT - doc: recieves customer review ID, used to extract information about that review
+// OUTPUT: no return value, but creates customer review card and appends card to "comments-go-here" div in storeInformation.html
 function displayOneReview(doc) {
+    // get customer review information
     var userUID = doc.data().username;
     var usernameR = "";
     var ratingR = doc.data().rating * 2;
@@ -26,6 +32,7 @@ function displayOneReview(doc) {
                     ratingString = ratingString + "&#xf006;";
                 }
             }
+            // create customer review card and put in appropriate section on page
             var codeString = '<div class="card mb-3">' +
                 '<div class="row g-0">' +
                 '<div class="col-md-3" style="padding: 10px 10px 0 10px; text-align: center; max-width: 115px;">' +
@@ -42,13 +49,12 @@ function displayOneReview(doc) {
                 '</div>' +
                 '</div>';
             $("#comments-go-here").append(codeString);
-
-            //var numberComment = +document.getElementById("numComment").innerHTML;
-            //$("#numComment").text(numberComment + 1);
         })
 }
 
-// function that runs at on page start to load all comments for this store 
+// function that runs at on page start to load all comments for this store. Running this function again clears previous reviews.
+// INPUT - none
+// OUTPUT - no return value, but calls displayOneReview() to post reviews, updateStoreRating() to update * rating, and changes review counter on page 
 function displayReviews() {
     // reset reviews that were posted and # reviews counter
     $("#numComment").text(0);
@@ -88,6 +94,8 @@ function displayReviews() {
 }
 
 // function for handling when a new review is posted
+// INPUT - no input parameter, listens for "postReview" button to be pressed and captures information from popup window.
+// OUTPUT - no return value, but posts new review to DB and calls displayReviews() to update posted customer reviews section.
 function createComment() {
     // grab url
     const parsedUrl = new URL(window.location.href);
@@ -133,6 +141,8 @@ function createComment() {
 createComment();
 
 // function for updating rating value of slider when adding new reviews
+// INPUT - inputRating: the value of the slider when it changes
+// OUTPUT: no return value, but generates * bar string and posts to "revewRatingValue" element on add review popup
 function updateRating(inputRating) {
     var halfStar = 0;
     var rating = "";
@@ -152,7 +162,9 @@ function updateRating(inputRating) {
     document.getElementById("reviewRatingValue").innerHTML = rating;
 }
 
-// function to post the store rating 
+// function to post the store rating (the * bar at the top of the page for cumulative rating)
+// INPUT: no input parameter, but reads * rating from all customer reviews from DB
+// OUTPUT: no return value, but puts calculated * rating string into "storeRating" id element on page and updates DB.
 function updateStoreRating() {
     // grab url
     const parsedUrl = new URL(window.location.href);
@@ -206,6 +218,8 @@ function updateStoreRating() {
 }
 
 // function for adding more data to database; just for testing purposes only
+// INPUT: none
+// OUTPUT: no return, but writes "stores" to DB
 function writeData() {
     var stores = [{
             "cumulativeRating": 0,

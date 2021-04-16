@@ -1,4 +1,10 @@
+// the "search_scripts.js" is written by Joseph and includes functions used for the showSearch.html page
+//     and other search related functionality of pages (i.e. the search bar on each page).
+
+
 // add listener to search field in nav bar
+// INPUT: no input parameter, but get search bar id
+// OUTPUT: none
 function getSearchBar() {
     document.getElementById("searchSubmit").addEventListener('click', function () {
         var store = document.getElementById("storeSearch").value;
@@ -7,12 +13,14 @@ function getSearchBar() {
     })
 }
 
-// put text back into search bar
+// function to put text back into search bar. Relies on being able to extract that information from URL
+// INPUT: no input parameter, but grabs search terms from URL
+// OUTPUT: no return value, but outputs search term text into search bar
 function refillSearchBar() {
-    console.log("am here");
     const parsedUrl = new URL(window.location.href);
     // extract id from url, assign to variable
     var search = (parsedUrl.searchParams.get("search"));
+
     //console.log(parsedUrl.searchParams.get("storeID"));
 
     // put search terms back into search bar for user to have for reference (for future searches)
@@ -20,7 +28,16 @@ function refillSearchBar() {
 }
 
 // function for taking search terms from url, and seeing how relevant they are to DB stores.
-// passes list (in descending relevance) to another function to display on page
+//     This is done by: 
+//      0) separating search term string into list of search term words
+//      1) iterating through all stores in DB
+//      2) for each store, iterate through each word in the list of search terms, comparing them to a list of tags for that store
+//          a) if there's a match b/w search term and store tag, increment a "relevence" counter (each term is weighted the same)
+//      3) in this manner compile a list of stores and their relevence to the search (stores of 0 relevence not included on list)
+//      4) sort list according to relevence (highest relevance to be displayed first, so in index 0)
+//      5) pass list to displayResults() to post results to showSearch.html
+// INPUT: no input parameter, but grabs search term information from URL
+// OUTPUT: no return value, but calls displayResults() to output search results to showSearch.html
 function getResults() {
     // grab url
     const parsedUrl = new URL(window.location.href);
@@ -38,14 +55,11 @@ function getResults() {
     db.collection("storesDatabase")
         .get()
         .then(function (store) { // get entire collection of stores
-
             // iterate through all stores
             store.forEach(function (doc) {
                 isStored = false;
-
                 // iterate through each word of search
                 wordList.forEach(function (word) {
-
                     // iteration through store's tags
                     for (var i = 0; i < (doc.data().tags).length; i++) {
                         // see if store's tag words are relevant to search
@@ -58,22 +72,14 @@ function getResults() {
                                 storeArray.push(doc.id);
                                 relevance.push(1); // use "1" as object being pushed into array (equiv to 0++)
                             }
-
                         }
                     }
                 })
-
                 // if value was stored, increment relevance index
                 if (isStored) {
                     relevanceIndex++;
                 }
-                //console.log(doc.data().tags[1]);
             })
-
-            /* before sort logging
-            console.log("storeArray: " + storeArray);
-            console.log("relevance: " + relevance);
-            */
 
             // Sort stores according to relevance to search
             // 3 step sorting process modified from: 
@@ -88,8 +94,6 @@ function getResults() {
             //2) sort (descending order):
             list.sort(function (a, b) {
                 return ((a.rel > b.rel) ? -1 : ((a.rel == b.rel) ? 0 : 1));
-                //Sort could be modified to, for example, sort on the age 
-                // if the name is the same.
             });
             //3) separate them back out:
             for (var k = 0; k < list.length; k++) {
@@ -97,16 +101,13 @@ function getResults() {
                 relevance[k] = list[k].rel;
             }
             displayResults(storeArray);
-
-            /* after sort logging
-            console.log("storeArray: " + storeArray);
-            console.log("relevance: " + relevance);
-            console.log("r index: " + relevanceIndex);
-            */
         })
 }
 
-// function that handles displaying information on page (what search terms are used and cards for relevant results)
+// function that handles displaying information on page (what search terms are used and cards for relevant results).
+//     Attach a listener to each card so allow user to click on card and be brought to that page.
+// INPUT - storeList: list of store ID's (in correct order of being displayed) to put onto page
+// OUTPUT: no return value, but generates store card and appends "resultsBody" id in showSearch
 function displayResults(storeList) {
     // grab url
     const parsedUrl = new URL(window.location.href);
@@ -122,8 +123,6 @@ function displayResults(storeList) {
         $("#searchTerms").text(search);
     }
 
-    //console.log(search);
-
     // post relevant stores from search on screen. Handle case where no relevant results were found
     if ((storeList == null) || (storeList.length == 0)) {
         $("#searchTermsSubtitle").text("No relevant stores were found for this search!");
@@ -135,9 +134,6 @@ function displayResults(storeList) {
                 .doc(storeList[j]) // get specific store document
                 .get() // read
                 .then(function (doc) { // display details!
-                    //displayOneReview(doc, storeList) // send to another function to write to page
-                    //console.log(doc.id);
-
                     var nameS = doc.data().storeInformation.name;
                     var ratingS = doc.data().cumulativeRating * 2;
                     var imageS = doc.data().imageGallery.image1;
@@ -178,21 +174,21 @@ function displayResults(storeList) {
                         '</div>';
                     $("#resultsBody").append(codeString);
                     addStoreListener(doc.id);
-                    //console.log(j);
                 })
         }
     }
 }
 
-// function for adding listener to results posting on page
+// function for adding listener to results posting on page. Directs user to storeInformation.html with the store ID and search terms
+//     in the URL. Change background color of card/cursor displayed when user hovers over card.
+// INPUT - id: store ID to put into URL
+// OUTPUT: no return value, but redirects user to different page when card is clicked
 function addStoreListener(id) {
     document.getElementById(id)
         .addEventListener("click", function () {
 
             const parsedUrl = new URL(window.location.href);
             var searchID = (parsedUrl.searchParams.get("search"));
-
-
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                     window.location.href = "storeInformation.html?search=" + searchID + "&" + "storeID=" + id + "&id=" + user.uid;

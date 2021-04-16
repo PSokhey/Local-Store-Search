@@ -20,11 +20,9 @@
     }
   </style>
   <title>Local store search</title>
-
 </head>
 
 <body>
-
   <!----header-->
   <nav class="navbar navbar-expand-lg navbar-light navBars">
     <div class="container-fluid">
@@ -43,20 +41,16 @@
           </li>
         </ul>
         <div class="d-flex">
-
           <a href="login.html" class="btn btn-dark">Logout</a>
-
           <input id="storeSearch" Class="form-control me-2" placeholder="Search stores">
           <button id="searchSubmit" class="btn btn-outline-success">Search</button>
         </div>
       </div>
     </div>
   </nav>
-
   <div class="container">
     <h1 class="display-4" style="text-align: center;">Help</h1>
   </div>
-
 
   <!--collapsable options-->
   <div class="accordion" id="accordionExample" style="margin-bottom: 5em;">
@@ -157,11 +151,7 @@
 
   </div>
 
-
-
-
   <!--pop up message-->
-
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -181,9 +171,6 @@
     </div>
   </div>
 
-
-
-
   <!--feedback for-->
   <div Style=" width: 50%; margin: 0 auto; margin-bottom: 100px;">
     <div class="mb-3">
@@ -200,10 +187,6 @@
         data-bs-target="#staticBackdrop">Submit</button>
     </div>
   </div>
-
-
-
-
 
   <!--footer-->
   <nav class="navbar fixed-bottom navbar-light navBars">
@@ -234,76 +217,49 @@
   <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
 
   <script src="scripts/firebase-api-storesearch.js"></script>
-
-
-
-
-
   <script src="scripts/FunctionsPrabh.js"></script>
   <script src="scripts/search_scripts.js"></script>
   <script>
     getSearchBar();
   </script>
-
-
   <script>
-    //submit feedback form. 
-
+    // code for handling submit feedback form; add listener for submission button
+    // INPUT: no input argument, though values from feedback boxes are taken
+    // OUTPUT: no return value, though feedback sent to DB and user prompt pops up on screen
     document.getElementById("submitButton")
       .addEventListener("click", function () {
-
-
         const parsedUrl = new URL(window.location.href);
         var userID = parsedUrl.searchParams.get("id");
-
         feedbackEmail = document.getElementById("emailForm").value;
         feedbackForm = document.getElementById("requestForm").value;
-
+        // check if form has content or not
         if (feedbackForm != "") {
-
           document.getElementById("popHeader").innerText = "Submitted";
           document.getElementById("popBody").innerText = "Thank you for your feedback!";
-
+          // check if form has email or not
           if (feedbackEmail == "") {
-
             db.collection("feedback").doc().set({
-
               email: "unavailable",
               request: feedbackForm
-
             })
-
           } else {
-
             db.collection("feedback").doc(userID).set({
-
               email: feedbackEmail,
               request: feedbackForm
-
             })
-
-
           }
-
-
-
         } else {
-
+          // error message for no feedback message
           document.getElementById("popHeader").innerText = "Error";
           document.getElementById("popBody").innerText = "Please fill out request before submitting";
         }
-
       });
-
-
+    // send user prompt to indicate feedback was received
     document.getElementById("understood")
       .addEventListener("click", function () {
         window.location.reload();
       });
   </script>
-
-
-
 </body>
 
 </html>

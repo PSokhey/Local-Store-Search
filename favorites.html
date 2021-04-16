@@ -19,14 +19,10 @@
       background-color: #EEC643;
     }
   </style>
-
   <title>favorites</title>
 </head>
 
 <body>
-
-
-
   <!--Nav bar-->
   <nav class="navbar navbar-expand-lg navbar-light navBars">
     <div class="container-fluid">
@@ -45,9 +41,7 @@
           </li>
         </ul>
         <div class="d-flex">
-
           <a href="login.html" class="btn btn-dark">Logout</a>
-
           <input id="storeSearch" Class="form-control me-2" placeholder="Search stores">
           <button id="searchSubmit" class="btn btn-outline-success">Search</button>
         </div>
@@ -57,7 +51,6 @@
   <div class="container" style="margin: 0 auto; text-align: center;">
     <h1v class="display-4"><span id="welcome"></span>'s Favorites</h1>
   </div>
-
 
   <!--favorites list-->
   <div style="width: 45%; margin : 0 auto;">
@@ -69,10 +62,6 @@
     </div>
   </div>
 
-
-
-
-
   <!--footer-->
   <nav class="navbar fixed-bottom navbar-light navBars">
     <div class="container-fluid">
@@ -80,8 +69,6 @@
       <button id="favoritesGo" class="btn btn-primary btn-dark" type="reset" value="Favorites">Favorites</button>
     </div>
   </nav>
-
-
 
   <!-- Optional JavaScript; choose one of the two! -->
 
@@ -110,94 +97,54 @@
   <script>
     getSearchBar();
   </script>
-
-
   <script>
+    // put content on page (add username and user's favorites list to page, formatted properly)
+    // INPUT: no input parameters, though user ID gotten from URL
+    // OUTPUT: no return value, though username/favorites list added to page
     function displayUsers() {
-
       const parsedUrl = new URL(window.location.href);
       var userID = parsedUrl.searchParams.get("id");
       console.log("Retrieved ID on  fav page " + userID);
-
-
       db.collection("users").doc(userID).get()
         .then(function (doc) {
-
-
-
           //   var emailInfo = doc.data().email;
 
-          // dispaying personal name on favorite page. 
+          // displaying personal name on favorite page. 
           var user = doc.data().name;
           console.log(user);
-
-
           document.getElementById("welcome").innerText = user;
-
-
           // how to access the array holding favorite stores. 
-
           var test = doc.data().favStores;
           console.log(test);
 
-
-
           if (test.length == 0) {
-
             var noFavorites = document.createElement("a");
             // storeLink.id = "forMore";
             noFavorites.textContent = "Go search and find some favorites!";
             noFavorites.className = "list-group-item list-group-item-action";
             document.getElementById("favorites").appendChild(noFavorites);
-
           } else {
-
             for (i = 0; i < test.length; i++) {
-
-
               db.collection("storesDatabase").doc(test[i])
                 .get()
                 .then(function (doc) {
-
-
-
                   console.log("this is a test " + doc.data().storeInformation.name);
                   console.log("testing the idnex " + i);
                   var storeLink = document.createElement("a");
                   storeLink.textContent = doc.data().storeInformation.name;
                   storeLink.className = "list-group-item list-group-item-action";
                   storeLink.href = "storeInformation.html?search=local&storeID=" + doc.id + "&id=" +
-                  userID; //shold be test[i] but sees it as undefined.
-
+                    userID; //shold be test[i] but sees it as undefined.
                   document.getElementById("favorites").appendChild(storeLink);
-
-
-
                 });
-
-
             }
-
           }
-
-
-
-
           // end of the line.
-
-
-
-
           // document.getElementById(cityid).innerText = n;
-
-
-
-
         })
     }
     displayUsers();
   </script>
-
 </body>
 
 </html>

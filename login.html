@@ -12,13 +12,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-
     <!-- Optional styles and scripts of your own -->
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
 </head>
 
 <body>
-
     <!-------------------------------------->
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
@@ -64,10 +62,6 @@
                     value="Favorites">Favorites</button>
             </div>
         </nav>
-
-
-
-
     </div>
     <!----------------------------------------------->
     <!-- JS: Boostrap, Firebase, API related    -->
@@ -119,7 +113,7 @@
                             }).then(function () {
                                 console.log("New user added to firestore");
                                 window.location.assign(
-                                "mainpage.html"); //re-direct to main.html after signup
+                                    "mainpage.html"); //re-direct to main.html after signup
                             })
                             .catch(function (error) {
                                 console.log("Error adding new user: " + error);

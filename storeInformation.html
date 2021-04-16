@@ -37,15 +37,13 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a id="profileGo" class="nav-link" href="#">Profile</a>
-              </li>
-              <li class="nav-item">
-                <a id="helpGo" class="nav-link" href="#">Help</a>
-              </li>
-            </ul>
-            <div class="d-flex">
-
+          </li>
+          <li class="nav-item">
+            <a id="helpGo" class="nav-link" href="#">Help</a>
+          </li>
+        </ul>
+        <div class="d-flex">
           <a href="login.html" class="btn btn-dark">Logout</a>
-
           <input id="storeSearch" Class="form-control me-2" placeholder="Search stores">
           <button id="searchSubmit" class="btn btn-outline-success">Search</button>
         </div>
@@ -65,37 +63,31 @@
         <div id="storeImage"><img src="https://dummyimage.com/800x400/000/fff&text=Featured+Image" class="img-fluid"
             alt="Store image"></div>
 
+        <!--favorite button-->
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button id="favorite" class="btn btn-primary btn-dark" type="button" style="margin-top: 10px;"
+            data-bs-toggle="modal" data-bs-target="#staticBackdrop">Favorite</button>
+        </div>
 
-            <!--favorite button-->
-
-            <div class="d-grid gap-2 col-6 mx-auto">
-              <button id="favorite" class="btn btn-primary btn-dark" type="button" style="margin-top: 10px;"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Favorite</button>
+        <!--pop up for favoirte-->
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Favorites update</h5>
+                <button type="button" class="btn-close btn-dark" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" id="popUpBody">
+                Your favorite list has been updated.
+              </div>
+              <div class="modal-footer">
+                <button id="understood" type="button" class="btn btn-primary btn-dark">Understood</button>
+              </div>
             </div>
-
-
-            <!--pop up for favoirte-->
-            <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Favorites update</h5>
-        <button type="button" class="btn-close btn-dark" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" id="popUpBody">
-        Your favorite list has been updated.
-      </div>
-      <div class="modal-footer">
-        <button id="understood" type="button" class="btn btn-primary btn-dark">Understood</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
+          </div>
+        </div>
         <div class="card-body">
           <p id="companyImageCaption" class="card-text"></p>
         </div>
@@ -103,8 +95,8 @@
       </br>
       <!-- Dropdown menu item 1 -->
       <p>
-        <a style="width: 180px" class="btn btn-primary btn-dark" data-bs-toggle="collapse" href="#companyDesc" role="button"
-          aria-expanded="false" aria-controls="companyDesc">
+        <a style="width: 180px" class="btn btn-primary btn-dark" data-bs-toggle="collapse" href="#companyDesc"
+          role="button" aria-expanded="false" aria-controls="companyDesc">
           Company Description
         </a>
       </p>
@@ -136,8 +128,8 @@
       </div>
       <!-- Dropdown menu item 2 -->
       <p>
-        <a style="width: 180px" class="btn btn-primary btn-dark" data-bs-toggle="collapse" href="#externalLink" role="button"
-          aria-expanded="false" aria-controls="externalLink">
+        <a style="width: 180px" class="btn btn-primary btn-dark" data-bs-toggle="collapse" href="#externalLink"
+          role="button" aria-expanded="false" aria-controls="externalLink">
           Contact Us
         </a>
       </p>
@@ -154,8 +146,8 @@
       </div>
       <!-- Dropdown menu item 3 -->
       <p>
-        <a style="width: 180px" class="btn btn-primary btn-dark" data-bs-toggle="collapse" href="#imageGallery" role="button"
-          aria-expanded="false" aria-controls="imageGallery">
+        <a style="width: 180px" class="btn btn-primary btn-dark" data-bs-toggle="collapse" href="#imageGallery"
+          role="button" aria-expanded="false" aria-controls="imageGallery">
           Image Gallery
         </a>
       </p>
@@ -167,8 +159,8 @@
       </div>
       <!-- Dropdown menu item 4 -->
       <p>
-        <a style="width: 180px" class="btn btn-primary btn-dark" data-bs-toggle="collapse" href="#customerReview" role="button"
-          aria-expanded="false" aria-controls="customerReview">
+        <a style="width: 180px" class="btn btn-primary btn-dark" data-bs-toggle="collapse" href="#customerReview"
+          role="button" aria-expanded="false" aria-controls="customerReview">
           Customer Reviews
         </a>
       </p>
@@ -177,9 +169,9 @@
           <div class="customerPost">
             <!-- ***header options/elements of customer review section*** -->
             <div style="margin-bottom: 12px;" id="customerPostHeader">
-
               <!-- button for adding new review -->
-              <button type="button" class="btn btn-primary btn-dark" data-bs-toggle="modal" data-bs-target="#addReviewItem">Add
+              <button type="button" class="btn btn-primary btn-dark" data-bs-toggle="modal"
+                data-bs-target="#addReviewItem">Add
                 Review</button>
               <div class="modal fade" id="addReviewItem" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -187,7 +179,8 @@
                   <div class="modal-content">
                     <div class="modal-header" id="addReviewContainer">
                       <h5 class="modal-title" id="customerReviewMenuTitle">Add New Review</h5>
-                      <button type="button" class="btn-close btn-dark" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <button type="button" class="btn-close btn-dark" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                       <form>
@@ -205,13 +198,13 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary btn-dark" data-bs-dismiss="modal">Cancel</button>
-                      <button type="button" class="btn btn-primary btn-dark" id="postReview" data-bs-dismiss="modal">Post
+                      <button type="button" class="btn btn-primary btn-dark" id="postReview"
+                        data-bs-dismiss="modal">Post
                         Review</button>
                     </div>
                   </div>
                 </div>
               </div>
-
               <!-- drop down menu for sorting reviews -->
               <div class="dropdown" style="display: inline-block;">
                 <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" id="dropdownMenuButton1"
@@ -223,33 +216,28 @@
                   <li><button class="dropdown-item" type="button">Most Recent</button></li>
                 </ul>
               </div>
-
               <!-- number of reviews posted -->
               <div style="display:inline-block; margin-left: 20px; font-size: 12pt; padding-top: 10px;">
                 <p><span id="numComment">0</span> Reviews</p>
               </div>
             </div>
-
             <!-- customer reviews/comments go here -->
             <div id="comments-go-here"></div>
-
-
           </div>
         </div>
         <br />
       </div>
-
       <!-- some spacing so footer does not overlap with any content -->
       </br></br></br>
     </div>
 
- <!--footer-->
- <nav class="navbar fixed-bottom navbar-light navBars">
-  <div class="container-fluid">
-    <button id="homeGO" class="btn btn-primary btn-dark" type="button">Home</button>
-    <button id="favoritesGo" class="btn btn-primary btn-dark" type="reset" value="Favorites">Favorites</button>
-  </div>
-</nav>
+    <!--footer-->
+    <nav class="navbar fixed-bottom navbar-light navBars">
+      <div class="container-fluid">
+        <button id="homeGO" class="btn btn-primary btn-dark" type="button">Home</button>
+        <button id="favoritesGo" class="btn btn-primary btn-dark" type="reset" value="Favorites">Favorites</button>
+      </div>
+    </nav>
 
     <!----------------------------------------------->
     <!-- JS: Boostrap, Firebase, API related    -->
@@ -272,43 +260,32 @@
     <script src="scripts/search_scripts.js"></script>
     <script src="scripts/FunctionsPrabh.js"></script>
     <script>
-      // load store information using store UID from url
+      // load store information using store UID from url. Give error message if store not found.
+      // INPUT: no input parameters, but grabs store data from DB
+      // OUTPUT: no return value, but puts store data onto page
       function getDetails() {
-        // https://some.site/?id=123
         const parsedUrl = new URL(window.location.href);
-        //console.log(parsedUrl.searchParams.get("id")); // "123"
-
         // extract id from url, assign to variable
         var storeID = parsedUrl.searchParams.get("storeID");
-        //console.log(storeID);
-
         // handle case where no storeID is found
         if (storeID != null) {
-
-
           // use this ID to read from firestore
           db.collection("storesDatabase")
             .doc(storeID) // store ID that we extracted
             .get() // REAC async
             .then(function (doc) { // display details!
-              //console.log(doc);
-
               // load store info. If store not found, give user error message
               if (doc.exists) {
                 displayReviews();
-
                 var name = doc.data().storeInformation.name;
                 var address = doc.data().storeInformation.address;
                 var postalCode = doc.data().storeInformation.postalCode;
                 var hours = doc.data().storeInformation.hours;
                 var bio = doc.data().storeInformation.storeBio;
-
                 var bannerImage = doc.data().imageGallery.image1;
-
                 var website = doc.data().externalLinks.link1;
                 var phone = doc.data().externalLinks.phoneNumber;
                 var email = doc.data().externalLinks.email;
-
                 var hoursList = "<table><tr><td>";
                 var days = ["Mon:&emsp;", "Tues:", "Wed:", "Thur:", "Fri:", "Sat:", "Sun:"];
                 for (var i = 0; i < hours.length; i++) {
@@ -318,107 +295,85 @@
                 for (var i = 0; i < hours.length; i++) {
                   hoursList += hours[i] + "<br>";
                 }
-
                 hoursList += "</td></tr></table>";
-
                 $("#storeName").html(name);
                 $("#storeAddress").html(address);
                 $("#storePostalCode").html(postalCode);
                 $("#storeBio").html(bio);
-
                 $("#storeHours").html(hoursList);
-
                 $("#storeImage").html("<img id='storeBannerImage' src='" + bannerImage + "'>");
                 $("#storeBannerImage").css("width", "50%");
-
                 $("#storeEmail").html("Email: " + email);
                 $("#storePhone").html("Phone: " + phone);
                 $("#storeLink").html("Website: " + website);
                 $("#storeInformationBody").css("display", "block");
               } else {
                 $("#storeInformationBody").css("display", "none");
-                $("#storeInformationError").text(" Oops! The store you are trying to search has not been found. Please go back to the store search page and choose a store there.");
-                //console.log("store not found");
+                $("#storeInformationError").text(
+                  " Oops! The store you are trying to search has not been found. Please go back to the store search page and choose a store there."
+                );
               }
-
-
             })
         }
-
       }
       getDetails();
       getSearchBar();
       refillSearchBar();
     </script>
 
-
-  
     <script>
-      // script for favorite store.
-
+      // script for handling favorites button for page
       const parsedUrl = new URL(window.location.href);
-        //console.log(parsedUrl.searchParams.get("id")); // "123"
 
-        // extract id from url, assign to variable
-        var userID = parsedUrl.searchParams.get("id");
-        var storeID = parsedUrl.searchParams.get("storeID");
-        console.log("Prabh" + userID);
-        console.log("Prabh" + storeID);
+      // extract id from url, assign to variable
+      var userID = parsedUrl.searchParams.get("id");
+      var storeID = parsedUrl.searchParams.get("storeID");
+      console.log("Prabh" + userID);
+      console.log("Prabh" + storeID);
 
-        document.getElementById("favorite")
-        .addEventListener("click", function() {
-
+      document.getElementById("favorite")
+        .addEventListener("click", function () {
           db.collection("users").doc(userID)
-          .get()
-          .then(function (doc) {
-
-            myStores = doc.data().favStores;
-            console.log("my list" + myStores);
-
-            toAdd = true;
-
-            for(i = 0; i < myStores.length ; i++) {
-
-              if(userID == myStores[i]) {
-                toAdd = false;
-                break;
+            .get()
+            .then(function (doc) {
+              myStores = doc.data().favStores;
+              console.log("my list" + myStores);
+              toAdd = true;
+              for (i = 0; i < myStores.length; i++) {
+                if (userID == myStores[i]) {
+                  toAdd = false;
+                  break;
+                }
               }
-            }
-            if(toAdd) {
-
-              db.collection("users").doc(userID)
-                    .update({
+              if (toAdd) {
+                db.collection("users").doc(userID)
+                  .update({
                     favStores: firebase.firestore.FieldValue.arrayUnion(storeID)
                   });
-
-                  console.log("added" + storeID);
-            }
-          });
-
-});
-
+                console.log("added" + storeID);
+              }
+            });
+        });
     </script>
-        <script>
+    <script>
+      document.getElementById("understood")
+        .addEventListener("click", function () {
+          window.location.reload();
+        });
+    </script>
 
-          document.getElementById("understood")
-          .addEventListener("click", function() {
-            window.location.reload();
-          });
-
-</script>
-
-<script>
-  function checkLogin() {
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (!user) {
+    <script>
+      // script for checking if user is logged in. If not logged in, prevent user from being able to post new reviews.
+      function checkLogin() {
+        firebase.auth().onAuthStateChanged(function (user) {
+          if (!user) {
             // if nobody logged in, don't give ability to add review
             $("#addReviewContainer").css("display", "none");
-        } 
-    });
-}
-checkLogin();
-  </script>
-
+          }
+        });
+      }
+      checkLogin();
+    </script>
 </body>
 
 </html>

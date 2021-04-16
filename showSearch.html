@@ -12,7 +12,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-
   <!-- Optional styles and scripts of your own -->
 
   <link rel="stylesheet" type="text/css" href="/styles/style.css" />
@@ -30,9 +29,6 @@
 </head>
 
 <body>
-
-
-
   <nav class="navbar navbar-expand-lg navbar-light navBars">
     <div class="container-fluid">
       <a class="navbar-brand">Find Local</a>
@@ -50,9 +46,7 @@
           </li>
         </ul>
         <div class="d-flex">
-
           <a href="login.html" class="btn btn-dark">Logout</a>
-
           <input id="storeSearch" Class="form-control me-2" placeholder="Search stores">
           <button id="searchSubmit" class="btn btn-outline-success">Search</button>
         </div>
@@ -60,14 +54,11 @@
     </div>
   </nav>
   </div>
-
   <div id="header" class="container">
     <h1 id="searchTermsFull" class="display-4">You searched for: "<b id="searchTerms"></b>"</h1>
     <h2 id="searchTermsSubtitle"></h2>
     <span id="errorMessage"></span>
   </div>
-
-
 
   <div id="resultsBody" class="container">
 
@@ -86,15 +77,10 @@
         </tr>
       </thead>
       <tbody id="stores-goes-here">
-
       </tbody>
     </table>
-
   </div>
-
 -->
-
-
   <!--footer-->
   <nav class="navbar fixed-bottom navbar-light navBars">
     <div class="container-fluid">
@@ -103,12 +89,9 @@
     </div>
   </nav>
 
-
   <!----------------------------------------------->
   <!-- JS: Boostrap, Firebase, API related    -->
   <!----------------------------------------------->
-
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
@@ -120,11 +103,9 @@
   </script>
   <script src="/scripts/firebase-api-storesearch.js"></script>
 
-
   <!--------------------------------------------------------------------->
   <!-- JS files: Your own JavaScript functions included here    -->
   <!--------------------------------------------------------------------->
-
   <script src="scripts/FunctionsPrabh.js"></script>
   <script src="/scripts/functions.js"></script>
   <script src="/scripts/search_scripts.js"></script>
@@ -132,8 +113,6 @@
     getSearchBar();
     refillSearchBar();
     getResults();
-
-
     //ShowStoresCollection();
   </script>
 </body>

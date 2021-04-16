@@ -1,7 +1,9 @@
-// my experimental functions here bere combining with main javascript folder
+// Writteb by Prabh: my experimental functions here bere combining with main javascript folder
 
 
-// function will keep track of user's UID on any page they are in. 
+// function will keep track of user's UID on any page they are in. Add listeners to buttons on nav bar/
+// INPUT: none
+// OUTPUT: none
 function sayHello() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -24,12 +26,10 @@ function sayHello() {
                     window.location.href = "account.html?id=" + user.uid;
                 });
 
-
             document.getElementById("helpGo")
                 .addEventListener("click", function () {
                     window.location.href = "help.html?id=" + user.uid;
                 });
-
 
             document.getElementById("favoritesGo")
                 .addEventListener("click", function () {
@@ -40,12 +40,6 @@ function sayHello() {
                 .addEventListener("click", function () {
                     window.location.href = "mainpage.html?id=" + user.uid;
                 });
-
-
-
-
-
-
         } else {
             // No user is signed in.
         }
